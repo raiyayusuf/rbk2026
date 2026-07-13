@@ -1,0 +1,91 @@
+============================================================
+TEMPLATE PROMPT UNTUK MINTA SUMMARY PROJECT
+============================================================
+
+------------------------------------------------------------
+FUNGSI
+------------------------------------------------------------
+Digunakan untuk meminta AI (DeepSeek/ChatGPT/Claude) membuat rangkuman
+project dengan format yang sudah ditentukan. Hasil summary ini nanti
+bisa dipake buat pindah ke chat baru.
+
+------------------------------------------------------------
+TEMPLATE PROMPT (COPY KE CHAT)
+------------------------------------------------------------
+
+Tolong buatkan rangkuman project saya dengan format di bawah ini,
+berdasarkan seluruh percakapan kita sebelumnya:
+
+---
+
+RANGKUMAN LENGKAP PROJECT RABIKU.ID (rbk2026)
+[TANGGAL/WAKTU RANGKUMAN]
+
+1. STATUS TERAKHIR:
+[Isi: apa yang terakhir kita kerjakan/bahas]
+
+2. YANG UDAH SELESAI:
+✅ [List semua yang udah selesai]
+
+3. YANG BELUM SELESAI:
+🔜 [List yang belum dikerjakan]
+
+4. KEPUTUSAN PENTING YANG UDAH DISEPAKATI:
+- [Keputusan 1]
+- [Keputusan 2]
+- [Keputusan 3]
+
+5. TECH STACK:
+- Framework: Next.js 16
+- Bahasa: TypeScript
+- Styling: Tailwind CSS
+- Database: Neon (PostgreSQL)
+- ORM: Prisma
+- Auth: NextAuth
+- Storage: Cloudinary
+- Hosting: Vercel
+
+6. STRUKTUR FOLDER:
+- src/app/ - Halaman & API routes
+- src/components/ - UI components
+- src/lib/ - Utilities & config
+- src/types/ - TypeScript types
+- src/utils/ - Helper functions
+- src/constants/ - Constants
+- prisma/ - Database schema
+
+7. BRAND COLOR:
+- Primary: #1659A0 (Rabiku Blue) + opacity (5%, 10%, 20%, 40%, 60%, 80%, 100%)
+- Background: #FFFFFF
+- Text: #1A1A1A
+
+8. HALAMAN YANG UDAH DIBUAT:
+- [List halaman yang udah ada]
+
+9. FILE/FOLDER PENTING YANG UDAH ADA:
+- [List file penting]
+
+10. PERTANYAAN YANG BELUM TERJAWAB:
+- [Pertanyaan 1]
+- [Pertanyaan 2]
+
+11. YANG PERLU DILANJUTKAN:
+- [Prioritas selanjutnya]
+
+---
+
+============================================================
+CONTOH PENGGUNAAN DI CHAT
+============================================================
+
+"Tolong buatkan rangkuman project saya dengan format di bawah ini,
+berdasarkan seluruh percakapan kita sebelumnya:
+
+[copy template di atas]"
+
+Nanti AI akan generate summary sesuai template, dan lo bisa
+copy hasilnya ke chat baru.
+
+============================================================
+END OF TEMPLATE
+============================================================

@@ -1,0 +1,391 @@
+============================================================
+TEMPLATE KOMENTAR RABIKU.ID (rbk2026)
+============================================================
+
+Project    : rbk2026 (Rabiku.id)
+Tech Stack : Next.js 16, TypeScript, Tailwind CSS, Prisma, Neon, NextAuth
+Author     : GSE Jogja Style
+
+============================================================
+1. KOMENTAR AWAL FILE (WAJIB)
+============================================================
+Digunakan di SETIAP file untuk mendeklarasikan path dan fungsi file.
+Format:
+
+/* ============================================
+   folder/nama-file.tsx
+   DESKRIPSI SINGKAT FILE
+   ============================================ */
+
+Contoh:
+
+/* ============================================
+   src/components/landing/hero-section.tsx
+   HERO SECTION UNTUK LANDING PAGE RABIKU.ID
+   ============================================ */
+
+/* ============================================
+   src/app/(auth)/login/page.tsx
+   LOGIN PAGE UNTUK ADMIN & SUPER ADMIN
+   ============================================ */
+
+/* ============================================
+   src/lib/prisma.ts
+   PRISMA CLIENT INSTANCE UNTUK DATABASE
+   ============================================ */
+
+
+============================================================
+2. KOMENTAR TENGAH (CAPSLOCK)
+============================================================
+Digunakan untuk memisahkan section/block kode yang besar dan penting.
+Gunakan huruf KAPITAL semua, pisah kata dengan spasi.
+Format:
+
+/* ============================================
+   NAMA SECTION ATAU JUDUL BLOCK
+   ============================================ */
+
+Contoh:
+
+/* ============================================
+   THEME CONFIGURATION
+   ============================================ */
+
+/* ============================================
+   HERO SECTION VARIANT
+   ============================================ */
+
+/* ============================================
+   HANDLER FUNCTIONS
+   ============================================ */
+
+/* ============================================
+   API RESPONSE TYPES
+   ============================================ */
+
+/* ============================================
+   RSVP FORM HANDLING
+   ============================================ */
+
+/* ============================================
+   SUPER ADMIN USER MANAGEMENT
+   ============================================ */
+
+
+============================================================
+3. KOMENTAR INLINE (bukan CAPSLOCK)
+============================================================
+Digunakan untuk memberi label pada elemen JSX atau baris kode sederhana.
+Tidak terlalu panjang, cukup 2-5 kata. Huruf normal (tidak kapital).
+Format:
+
+{/* Nama Komponen */}
+{/* Deskripsi singkat */}
+
+Contoh:
+
+{/* Navbar */}
+{/* Hero Section */}
+{/* Couple Name */}
+{/* Wedding Date */}
+{/* Countdown Timer */}
+{/* Floating Music Player */}
+{/* RSVP Form */}
+{/* Bank Account Cards */}
+{/* Gallery Grid */}
+{/* Footer */}
+
+
+============================================================
+4. CATEGORY SPESIFIK RABIKU.ID
+============================================================
+
+KOMENTAR UNTUK KOMPONEN WEDDING (Customer Website):
+----------------------------------------------------
+/* ============================================
+   SECTION HERO / COVER AWAL
+   ============================================ */
+
+/* ============================================
+   SECTION KUTIPAN / MAKNA
+   ============================================ */
+
+/* ============================================
+   SECTION PASANGAN MEMPELAI
+   ============================================ */
+
+/* ============================================
+   SECTION PENGINGAT WAKTU (COUNTDOWN)
+   ============================================ */
+
+/* ============================================
+   SECTION RANGKAIAN ACARA
+   ============================================ */
+
+/* ============================================
+   SECTION LEMBAR KENANGAN (GALERI)
+   ============================================ */
+
+/* ============================================
+   SECTION TANDA KASIH (KADO)
+   ============================================ */
+
+/* ============================================   SECTION BUKU TAMU (RSVP)
+   ============================================ */
+
+/* ============================================   SECTION TERIMA KASIH PENUTUP
+   ============================================ */
+
+KOMENTAR UNTUK DASHBOARD ADMIN (Customer):
+----------------------------------------------------
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+
+/* ============================================   EDIT WEBSITE (INLINE EDITING)
+   ============================================ */
+
+/* ============================================   RSVP GUEST LIST
+   ============================================ */
+
+/* ============================================   WEBSITE SETTINGS
+   ============================================ */
+
+KOMENTAR UNTUK SUPER ADMIN:
+----------------------------------------------------
+/* ============================================
+   USER MANAGEMENT
+   ============================================ */
+
+/* ============================================
+   THEME MANAGEMENT
+   ============================================ */
+
+/* ============================================
+   SONG MANAGEMENT
+   ============================================ */
+
+/* ============================================   EXPIRED DATE HANDLING
+   ============================================ */
+
+KOMENTAR UNTUK DATABASE / PRISMA:
+----------------------------------------------------
+/* ============================================
+   PRISMA SCHEMA DEFINITION
+   ============================================ */
+
+/* ============================================   DATABASE QUERIES
+   ============================================ */
+
+/* ============================================   MIGRATION SEEDING
+   ============================================ */
+
+
+============================================================
+ATURAN TAMBAHAN KHUSUS RABIKU.ID
+============================================================
+
+1. Komentar awal file WAJIB ada di setiap file, tanpa terkecuali.
+
+2. Komentar capslock hanya untuk blok kode yang benar-benar penting
+   (seperti Variants, Props, Helper Functions, Main Component).
+
+3. Komentar inline hanya untuk memberi label pada elemen JSX,
+   jangan digunakan untuk comment kode yang dinonaktifkan.
+
+4. Jangan mencampur komentar capslock dengan komentar inline.
+
+5. Hindari komentar panjang di inline comment (cukup 2-5 kata).
+
+6. Tidak ada komentar tambahan yang tidak termasuk dalam 3 kategori di atas.
+
+7. Untuk komponen wedding section, gunakan nama section yang konsisten
+   dengan blueprint (Hero, Quote, Bride, Groom, Countdown, Schedule,
+   Gallery, Gifts, RSVP, Thanks).
+
+8. Untuk warna brand, gunakan "Rabiku Blue" dengan hex #1659A0
+   dan varian opacity (/5, /10, /20, /40, /60, /80, /100).
+
+
+============================================================
+CONTOH PENGGUNAAN LENGKAP
+============================================================
+
+/* ============================================
+   src/app/(public)/[slug]/page.tsx
+   WEBSITE WEDDING CUSTOMER PUBLIC PAGE
+   ============================================ */
+
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+import HeroSection from "@/components/wedding/hero-section";
+import QuoteSection from "@/components/wedding/quote-section";
+import CoupleSection from "@/components/wedding/couple-section";
+import CountdownSection from "@/components/wedding/countdown-section";
+import ScheduleSection from "@/components/wedding/schedule-section";
+import GallerySection from "@/components/wedding/gallery-section";
+import GiftsSection from "@/components/wedding/gifts-section";
+import RSVPSection from "@/components/wedding/rsvp-section";
+import ThanksSection from "@/components/wedding/thanks-section";
+import MusicPlayer from "@/components/wedding/music-player";
+
+/* ============================================
+   GET WEDDING DATA
+   ============================================ */
+async function getWeddingData(slug: string) {
+  const data = await prisma.weddingSite.findUnique({
+    where: { slug },
+    include: { user: true, song: true },
+  });
+
+  if (!data || !data.isActive) {
+    notFound();
+  }
+
+  return data;
+}
+
+/* ============================================
+   WEDDING PAGE COMPONENT
+   ============================================ */
+export default async function WeddingPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const wedding = await getWeddingData(params.slug);
+
+  return (
+    <main className="min-h-screen bg-white">
+      {/* Floating Music Player */}
+      <MusicPlayer song={wedding.song} />
+
+      {/* Section 1: Hero */}
+      <HeroSection data={wedding} />
+
+      {/* Section 2: Quote */}
+      <QuoteSection quote={wedding.customMessage} />
+
+      {/* Section 3 & 4: Bride & Groom */}
+      <CoupleSection bride={wedding.brideName} groom={wedding.groomName} />
+
+      {/* Section 5: Countdown */}
+      <CountdownSection date={wedding.weddingDate} />
+
+      {/* Section 6: Schedule */}
+      <ScheduleSection events={wedding.eventSchedule} />
+
+      {/* Section 7: Gallery */}
+      <GallerySection images={wedding.galleryImages} />
+
+      {/* Section 8: Gifts */}
+      <GiftsSection banks={wedding.bankAccounts} />
+
+      {/* Section 9: RSVP */}
+      <RSVPSection weddingId={wedding.id} />
+
+      {/* Section 10: Thanks */}
+      <ThanksSection couple={`${wedding.groomName} & ${wedding.brideName}`} />
+    </main>
+  );
+}
+
+============================================================
+CONTOH KOMPONEN DENGAN KOMENTAR LENGKAP
+============================================================
+
+/* ============================================
+   src/components/wedding/hero-section.tsx
+   HERO / COVER AWAL SECTION WEBSITE WEDDING
+   ============================================ */
+
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+/* ============================================
+   PROPS INTERFACE
+   ============================================ */
+interface HeroSectionProps {
+  groomName: string;
+  brideName: string;
+  weddingDate: string;
+  venueName: string;
+  coverImage?: string;
+}
+
+/* ============================================
+   ANIMATION VARIANTS
+   ============================================ */
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+/* ============================================
+   HERO SECTION COMPONENT
+   ============================================ */
+export default function HeroSection({
+  groomName,
+  brideName,
+  weddingDate,
+  venueName,
+  coverImage,
+}: HeroSectionProps) {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-white">
+      {/* Background Image */}
+      {coverImage && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={coverImage}
+            alt={`${groomName} & ${brideName}`}
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-rabiku-blue/20" />
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="relative z-10 text-center text-white px-4">
+        <motion.h1
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          className="font-playfair text-5xl md:text-7xl"
+        >
+          {groomName} & {brideName}
+        </motion.h1>
+
+        <motion.p
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
+          className="text-lg md:text-xl mt-4"
+        >
+          {weddingDate}
+        </motion.p>
+
+        <motion.p
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.3 }}
+          className="text-base md:text-lg mt-2"
+        >
+          {venueName}
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
+============================================================
+END OF TEMPLATE
+============================================================

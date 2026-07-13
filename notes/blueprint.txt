@@ -1,0 +1,574 @@
+================================================================================
+                        RABIKU.ID - WEBSITE WEDDING
+                        Arsitektur & Perencanaan Proyek
+================================================================================
+
+1. VISI & MODEL BISNIS
+================================================================================
+Rabiku.id adalah platform jasa pembuatan website wedding dengan model sewa 
+berlangganan. Customer menyewa website untuk durasi tertentu (2-3 bulan) 
+sesuai masa pernikahan mereka.
+
+Model Bisnis:
+- Customer (Yusuf) menghubungi via WhatsApp
+- Pembayaran via QRIS (manual)
+- Super Admin (pemilik) membuatkan akun setelah pembayaran
+- Customer mendapat akses dashboard untuk mengedit konten
+- Website aktif sesuai durasi sewa, setelah expired akan dinonaktifkan
+
+Nama Repo GitHub:
+- rbk2026 (RaBiKu 2026)
+- Alasan: Singkatan dari RaBiKu, aman dari public, ga ketauan project wedding
+
+
+2. STRUKTUR WEBSITE (3 ROLE)
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  SUPER ADMIN (Pemilik/Pengembang)                                     │
+│  - Akses: rabiku.id/super-admin                                      │
+│  - Membuat & mengelola akun customer                                 │
+│  - Menentukan tema untuk setiap customer                             │
+│  - Mengatur masa aktif/expired website                               │
+│  - Melihat semua data customer                                       │
+│  - Mengelola daftar tema & desain                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│  ADMIN (Customer / Pembeli)                                           │
+│  - Akses: rabiku.id/login                                            │
+│  - Dashboard: rabiku.id/dashboard                                    │
+│  - Mengedit semua konten website wedding sendiri                     │
+│  - Melihat statistik tamu (RSVP)                                     │
+│  - Tidak bisa mengubah tema (ditentukan Super Admin)                 │
+│  - Halaman edit terintegrasi dengan preview langsung                │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│  USER (Tamu / Pengunjung)                                            │
+│  - Akses: rabiku.id/[slug-customer]                                 │
+│  - Tidak perlu login                                                 │
+│  - Hanya bisa melihat website wedding (read-only)                    │
+│  - Bisa mengisi RSVP/Buku Tamu                                      │
+│  - Bisa melihat galeri foto & info pernikahan                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+3. STRUKTUR URL & ROUTING
+================================================================================
+
+rabiku.id                       → Halaman landing page utama
+rabiku.id/super-admin           → Dashboard Super Admin
+rabiku.id/login                 → Halaman login semua role
+rabiku.id/dashboard             → Dashboard Admin (customer)
+rabiku.id/[slug]                → Halaman publik website wedding customer
+    Contoh: rabiku.id/yusuf-aleksia
+rabiku.id/[slug]/rsvp           → Halaman konfirmasi tamu (opsional)
+rabiku.id/api/*                 → API endpoints untuk semua fitur
+
+
+4. LANDING PAGE RABIKU.ID (Untuk Calon Pembeli)
+================================================================================
+
+Halaman utama rabiku.id adalah landing page untuk marketing, berisi:
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  NAVBAR (Sticky)                                                      │
+│  Logo | Beranda | Tema | Tentang | Testimonial | FAQ                │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  1. HERO SECTION                                                       │
+│     - Tagline: "Undangan Pernikahan Digital"                          │
+│     - CTA: "Pesan Sekarang" atau "Lihat Tema"                        │
+│                                                                         │
+│  2. TEMA SECTION                                                      │
+│     - Filter: [Semua] [Coklat] [Biru] [Pink] [Hijau] [Ungu]          │
+│     - Grid preview 5 tema (1 per warna)                               │
+│     - Masing-masing tema preview dengan gaya berbeda                  │
+│                                                                         │
+│  3. TENTANG SECTION                                                   │
+│     - Penjelasan tentang Rabiku.id                                    │
+│     - Keunggulan & fitur                                              │
+│                                                                         │
+│  4. TESTIMONIAL SECTION                                               │
+│     - Review dari customer sebelumnya                                │
+│                                                                         │
+│  5. FAQ SECTION                                                       │
+│     - Pertanyaan umum & jawaban                                       │
+│                                                                         │
+│  6. FOOTER                                                            │
+│     - Kontak WhatsApp                                                 │
+│     - Social media                                                    │
+│     - Copyright                                                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+5. HALAMAN WEBSITE WEDDING CUSTOMER (rabiku.id/[slug])
+================================================================================
+
+Setiap customer memiliki 1 halaman website wedding dengan 10 section:
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🎵 FLOATING MUSIC PLAYER (Selalu muncul di pojok)                    │
+│     - Play/Pause                                                      │
+│     - Judul lagu & artist                                             │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  SECTION 1: HERO / COVER AWAL                                         │
+│     - Foto cover besar                                                │
+│     - Nama pengantin (Yusuf & Aleksia)                               │
+│     - Tanggal pernikahan                                              │
+│     - Lokasi acara                                                    │
+│     - Kata sambutan singkat                                           │
+│                                                                         │
+│  SECTION 2: KUTIPAN / MAKNA                                           │
+│     - Ayat Al-Quran / Puisi / Kata mutiara                           │
+│     - Sumber kutipan                                                  │
+│                                                                         │
+│  SECTION 3: PASANGAN MEMPELAI WANITA                                 │
+│     - Foto mempelai wanita                                            │
+│     - Nama lengkap                                                    │
+│     - Nama orang tua                                                  │
+│     - Bio singkat (opsional)                                          │
+│                                                                         │
+│  SECTION 4: PASANGAN MEMPELAI PRIA                                   │
+│     - Foto mempelai pria                                              │
+│     - Nama lengkap                                                    │
+│     - Nama orang tua                                                  │
+│     - Bio singkat (opsional)                                          │
+│                                                                         │
+│  SECTION 5: PENGINGAT WAKTU (COUNTDOWN)                              │
+│     - Hitung mundur menuju hari H                                    │
+│     - Tanggal & jam acara                                             │
+│                                                                         │
+│  SECTION 6: RANGKAIAN ACARA                                           │
+│     - Daftar agenda acara (dinamis)                                  │
+│     - Jam & deskripsi setiap acara                                   │
+│                                                                         │
+│  SECTION 7: LEMBAR KENANGAN (GALERI)                                 │
+│     - Grid foto (3-4 kolom)                                          │
+│     - Support upload banyak foto                                     │
+│     - Variasi layout (grid/masonry/slider)                           │
+│                                                                         │
+│  SECTION 8: TANDA KASIH (KADO)                                       │
+│     - Rekening bank (BCA, Mandiri, dll)                             │
+│     - QRIS / Link donasi (Saweria, dll)                             │
+│                                                                         │
+│  SECTION 9: BUKU TAMU (RSVP)                                         │
+│     - Form: Nama, Hadir/Tidak, Jumlah Tamu, Pesan                   │
+│     - Admin bisa lihat daftar tamu di dashboard                      │
+│                                                                         │
+│  SECTION 10: TERIMA KASIH PENUTUP                                    │
+│     - Pesan penutup (bisa divariasikan)                              │
+│     - Nama pengantin                                                  │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+6. DASHBOARD ADMIN (Customer)
+================================================================================
+
+Setelah login, customer masuk ke dashboard:
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  SIDEBAR / NAVIGASI                                                   │
+│  📊 Dashboard                                                         │
+│  ✏️ Edit Website                                                      │
+│  👥 Daftar Tamu (RSVP)                                               │
+│  ⚙️ Pengaturan                                                       │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  ✏️ EDIT WEBSITE (Inline Editing)                                     │
+│     - Customer bisa edit semua konten langsung di halaman             │
+│     - Klik teks → muncul input                                        │
+│     - Upload foto → drag & drop                                      │
+│     - Perubahan langsung tersimpan ke database                       │
+│     - Ada tombol "Preview" & "Publish"                              │
+│                                                                         │
+│  👥 DAFTAR TAMU                                                       │
+│     - Nama tamu                                                       │
+│     - Status (Hadir/Tidak)                                           │
+│     - Jumlah tamu                                                     │
+│     - Pesan                                                           │
+│     - Export ke Excel/PDF                                            │
+│                                                                         │
+│  ⚙️ PENGATURAN                                                       │
+│     - Ganti lagu (dari daftar yang disediakan)                       │
+│     - Status website (Aktif/Nonaktif)                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+7. SISTEM TEMA & DESAIN
+================================================================================
+
+Konsep Tema:
+- 5 tema berdasarkan WARNA: Coklat, Biru, Pink, Hijau, Ungu
+- Setiap warna memiliki beberapa GAYA: Minimalis, Mewah, Rustic, Modern, Romantic
+- Total kombinasi: 5 warna × 3-5 gaya = 15-25 tema
+- Super Admin menentukan tema untuk setiap customer saat membuat akun
+- Customer TIDAK bisa mengubah tema sendiri
+
+Variasi Desain per Section:
+- Hero: 3-5 layout berbeda
+- Gallery: 3 layout (grid, masonry, carousel)
+- Thanks: 3-5 variasi ucapan
+- Total kombinasi desain: 5 warna × 3 gaya × 3 layout = 45+ desain
+
+Pengelolaan Tema:
+- Fase 1: Hardcode 5-10 template dasar (mulai jualan)
+- Fase 2: Tambah variasi layout (setelah ada 20+ customer)
+- Fase 3: Super Admin dashboard untuk kelola tema (opsional, jika scale)
+
+
+8. SISTEM LAGU/MUSIK
+================================================================================
+
+Fitur Audio:
+- Floating music player di semua halaman website wedding
+- Autoplay (dengan interaksi user pertama kali)
+- Loop (repeat)
+- Customer bisa pilih lagu dari daftar yang disediakan
+- Lagu bisa dibedakan per tema (misal: tema coklat → lagu klasik/religi)
+
+Opsi Implementasi:
+- Fase 1: Customer pilih dari daftar 10-15 lagu (hardcode di database)
+- Fase 2: Customer upload MP3 sendiri (fitur premium, extra charge)
+
+Sumber Lagu:
+- Lagu bebas royalti (Artlist, SoundCloud, dll)
+- Atau embed Spotify/YouTube (tidak perlu storage sendiri)
+
+
+9. TECH STACK
+================================================================================
+
+FRONTEND:
+─────────────────────────────────────────────────────────
+Framework      : Next.js 14+ (App Router)
+Styling        : Tailwind CSS
+UI Components  : Custom (tidak pakai library UI)
+State Management: React Context / Zustand (jika diperlukan)
+Animation      : Framer Motion / AOS (scroll animation)
+Form           : React Hook Form
+Toast/Notif    : React Hot Toast / Sonner
+
+BACKEND:
+─────────────────────────────────────────────────────────
+Runtime        : Node.js (Next.js API Routes)
+ORM            : Prisma
+Database       : Neon (PostgreSQL) - Serverless
+Authentication : NextAuth.js / JWT + bcrypt
+Validation     : Zod
+
+STORAGE (File/Asset):
+─────────────────────────────────────────────────────────
+Images         : Cloudinary (upload & optimization)
+Music/Audio    : Cloudinary / Firebase Storage
+Atau Embed     : Spotify / YouTube
+
+DEPLOYMENT & HOSTING:
+─────────────────────────────────────────────────────────
+Hosting        : Vercel (serverless)
+Database       : Neon (PostgreSQL) - terintegrasi dengan Vercel
+Domain         : rabiku.id (custom domain ke Vercel)
+SSL            : Otomatis dari Vercel
+
+DEV TOOLS:
+─────────────────────────────────────────────────────────
+Package Manager: npm / yarn
+Version Control: Git + GitHub (repo: rbk2026)
+Linting        : ESLint
+Formatting     : Prettier
+Type Checking  : TypeScript (strict mode)
+
+
+10. DATABASE SCHEMA (Konsep)
+================================================================================
+
+TABEL USER:
+─────────────────────────────────────────────────────────
+- id (PK, cuid)
+- email (unique)
+- password (hash bcrypt)
+- name
+- role (SUPER_ADMIN, ADMIN)
+- createdAt
+- updatedAt
+
+BRAND COLOR:
+─────────────────────────────────────────────────────────
+Primary      : #1659A0 (Rabiku Blue)
+Background   : #FFFFFF (Putih)
+Text         : #1A1A1A (Hitam)
+Variasi      : Opacity (5%, 10%, 20%, 40%, 60%, 80%, 100%)
+Tailwind     : bg-rabiku-blue/10, text-rabiku-blue/60, dst
+
+TABEL WEDDING_SITE:
+─────────────────────────────────────────────────────────
+- id (PK, cuid)
+- userId (FK ke User, unique → 1 admin = 1 website)
+- slug (unique, contoh: 'yusuf-aleksia')
+
+- // KONTEN (semua bisa diedit admin)
+- groomName
+- brideName
+- groomPhoto (URL Cloudinary)
+- bridePhoto (URL Cloudinary)
+- groomParents (JSON: ayah, ibu)
+- brideParents (JSON: ayah, ibu)
+- weddingDate (DateTime)
+- weddingTime (String)
+- venueName
+- venueAddress
+- loveStory (Text)
+- coverImage (URL)
+- galleryImages (JSON Array of URLs)
+- customMessage (Text)
+
+- // RANGKAIAN ACARA (JSON Array)
+- eventSchedule (JSON: [{time, title, description}])
+
+- // KADO / REKENING (JSON Array)
+- bankAccounts (JSON: [{bankName, accountNumber, accountHolder}])
+- donationLink (String)
+
+- // THEMA (ditentukan Super Admin)
+- theme (Enum: COKLAT, BIRU, PINK, HIJAU, UNGU)
+- themeStyle (Enum: MINIMALIS, MEWAH, RUSTIC, MODERN, ROMANTIC)
+
+- // LAGU
+- songId (FK ke tabel Song)
+- customSongUrl (String, opsional untuk custom upload)
+
+- // STATUS
+- isActive (Boolean)
+- expiredDate (DateTime)
+- views (Int, counter)
+- createdAt
+- updatedAt
+
+TABEL SONG (Daftar lagu default):
+─────────────────────────────────────────────────────────
+- id (PK, cuid)
+- title
+- artist
+- url (Cloudinary / Spotify embed)
+- duration
+- theme (Enum, opsional: lagu khusus tema tertentu)
+- isActive (Boolean)
+
+TABEL RSVP (Buku Tamu):
+─────────────────────────────────────────────────────────
+- id (PK, cuid)
+- weddingSiteId (FK ke WeddingSite)
+- guestName
+- guestPhone (opsional)
+- guestEmail (opsional)
+- attendance (Boolean: hadir/tidak)
+- totalGuests (Int, default 1)
+- message (Text, opsional)
+- createdAt
+
+TABEL TESTIMONIAL (Untuk landing page):
+─────────────────────────────────────────────────────────
+- id (PK, cuid)
+- weddingSiteId (FK ke WeddingSite)
+- customerName
+- customerPhoto (opsional)
+- review (Text)
+- rating (Int, 1-5)
+- isActive (Boolean)
+
+
+11. FITUR UTAMA & PRIORITAS
+================================================================================
+
+MUST HAVE (MVP - Fase 1):
+─────────────────────────────────────────────────────────
+✅ Landing page rabiku.id
+✅ Super Admin dashboard (create user, set tema, aktif/nonaktif)
+✅ Admin dashboard (edit konten)
+✅ Halaman publik website wedding (10 section)
+✅ Sistem login (Super Admin & Admin)
+✅ 5 tema warna dasar (hardcode)
+✅ Music player dengan daftar lagu default
+✅ RSVP / Buku Tamu
+✅ Upload gambar (Cloudinary)
+✅ Sistem expired date
+✅ Responsive mobile
+
+NICE TO HAVE (Fase 2):
+─────────────────────────────────────────────────────────
+🔲 Multiple layout per section
+🔲 Customer bisa upload lagu sendiri
+🔲 Export RSVP ke Excel/PDF
+🔲 Statistik pengunjung website
+🔲 Fitur custom domain (customer beli domain sendiri)
+🔲 Payment gateway otomatis (Midtrans/Xendit)
+🔲 Fitur trial 3 hari sebelum bayar
+🔲 WhatsApp integration (broadcast ke tamu)
+🔲 Multi-language (Indonesia/English)
+
+FUTURE (Fase 3):
+─────────────────────────────────────────────────────────
+⭐ Drag & drop page builder
+⭐ Custom CSS per website
+⭐ Template marketplace (customer jual template)
+⭐ AI-generated content (bantu tulis kata-kata)
+⭐ Mobile App untuk tamu
+
+
+12. KONSEP BISNIS & ONBOARDING
+================================================================================
+
+Alur Pembelian:
+─────────────────────────────────────────────────────────
+1. Customer (Yusuf) chat WhatsApp ke admin
+2. Admin jelaskan paket & harga
+3. Customer transfer via QRIS
+4. Admin cek pembayaran (manual)
+5. Admin buat akun di Super Admin dashboard
+   - Isi: nama, email, password, pilih tema
+6. Admin kasih tahu customer: "Silakan login di rabiku.id/login"
+7. Customer login dan mulai edit website
+8. Website aktif sesuai durasi sewa (2-3 bulan)
+9. Admin bisa extend/disable dari Super Admin
+
+Harga Paket (estimasi):
+─────────────────────────────────────────────────────────
+- Paket Basic   : Rp 250.000 (2 bulan, 1 tema, lagu default)
+- Paket Premium : Rp 500.000 (3 bulan, pilih tema, custom lagu)
+- Paket Custom  : Rp 750.000 (3 bulan, semua fitur + custom design)
+
+Catatan: Harga bisa disesuaikan, ini hanya estimasi awal.
+
+
+13. HALAMAN YANG PERLU DIBUAT
+================================================================================
+
+HALAMAN PUBLIK (Tanpa Login):
+─────────────────────────────────────────────────────────
+- /                      → Landing page Rabiku.id
+- /[slug]                → Website wedding customer (public)
+- /[slug]/rsvp           → Form RSVP (opsional, bisa di halaman yang sama)
+- /login                 → Halaman login
+
+HALAMAN PROTECTED (Harus Login):
+─────────────────────────────────────────────────────────
+- /super-admin           → Dashboard Super Admin
+- /super-admin/users     → Daftar semua user
+- /super-admin/users/[id]→ Edit user (tema, expired, dll)
+- /super-admin/songs     → Kelola daftar lagu
+- /super-admin/themes    → Kelola tema (jika dynamic)
+
+- /dashboard             → Dashboard Admin (customer)
+- /dashboard/edit        → Edit website (inline editing)
+- /dashboard/guests      → Daftar tamu RSVP
+- /dashboard/settings    → Pengaturan (ganti lagu, dll)
+
+API ENDPOINTS:
+─────────────────────────────────────────────────────────
+- /api/auth/login
+- /api/auth/logout
+- /api/auth/session
+
+- /api/users (CRUD, Super Admin only)
+- /api/users/[id]
+
+- /api/wedding (CRUD)
+- /api/wedding/[slug]
+- /api/wedding/upload
+
+- /api/rsvp (GET, POST)
+- /api/rsvp/[id]
+
+- /api/songs (GET, Super Admin only for CRUD)
+- /api/themes (GET)
+
+- /api/upload/image (Cloudinary)
+- /api/upload/audio (Cloudinary/Firebase)
+
+
+14. ESTIMASI WAKTU PENGERJAAN
+================================================================================
+
+Fase 1 - MVP (1-2 bulan):
+─────────────────────────────────────────────────────────
+- Setup project & tech stack       : 1 minggu
+- Landing page rabiku.id           : 1 minggu
+- Sistem auth (login)              : 3 hari
+- Super Admin dashboard            : 1 minggu
+- Admin dashboard (edit website)   : 1 minggu
+- Halaman publik website wedding   : 1 minggu
+- 5 tema dasar + 10 section        : 2 minggu
+- Music player + RSVP              : 1 minggu
+- Upload gambar (Cloudinary)       : 3 hari
+- Testing & bug fixing             : 1 minggu
+
+Total: ± 6-8 minggu (1-2 bulan)
+
+Fase 2 - Improvement (1 bulan):
+─────────────────────────────────────────────────────────
+- Multiple layout per section
+- Fitur upload lagu custom
+- Export RSVP
+- Statistik pengunjung
+
+Fase 3 - Scale (2-3 bulan):
+─────────────────────────────────────────────────────────
+- Payment gateway
+- Custom domain
+- Drag & drop builder
+
+
+15. PERTIMBANGAN TEKNIS PENTING
+================================================================================
+
+1. PERFORMANCE:
+   - Gunakan Next.js Image component untuk optimasi gambar
+   - Lazy loading untuk section di bawah fold
+   - Cache database query dengan Prisma
+   - Gunakan CDN Cloudinary untuk semua asset
+
+2. SEO:
+   - Meta tags dinamis per website wedding
+   - Open Graph untuk sharing ke WhatsApp/IG
+   - Sitemap otomatis
+
+3. KEAMANAN:
+   - Hash password dengan bcrypt
+   - Validasi input dengan Zod
+   - Middleware untuk proteksi route
+   - Rate limiting untuk API
+   - CORS configuration
+   - Environment variables untuk semua secret
+
+4. SCALABILITY:
+   - Database indexing (slug, email)
+   - Pagination untuk daftar user & RSVP
+   - Optimasi query (jangan n+1 problem)
+   - Serverless siap untuk scale otomatis (Vercel)
+
+5. USER EXPERIENCE:
+   - Loading state di semua async operation
+   - Toast notification untuk feedback
+   - Skeleton loading untuk gambar
+   - Drag & drop upload gambar
+   - Auto-save saat edit konten
+
+
+================================================================================
+                        END OF ARCHITECTURE DOCUMENT
+================================================================================
+
+Catatan: Dokumentasi ini adalah blueprint awal. Detail teknis dan implementasi
+akan disesuaikan selama proses pengembangan. Semua keputusan dapat berubah
+sesuai kebutuhan dan feedback dari customer.
+
+Versi: 1.0
+Tanggal: [Sesuaikan dengan tanggal diskusi]
+Status: Final Draft - Menunggu Persetujuan
+
+================================================================================
