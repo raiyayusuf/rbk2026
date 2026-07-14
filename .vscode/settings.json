@@ -1,0 +1,7 @@
+{
+  "editor.fontSize": 12,
+  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore"
+}
