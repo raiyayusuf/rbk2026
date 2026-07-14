@@ -1,0 +1,265 @@
+============================================================
+TEMPLATE CODING SINGKAT - GSE JOGJA STYLE
+============================================================
+
+Prinsip: 
+- Kode harus singkat, padat, dan jelas
+- Hindari duplikasi (DRY)
+- 1 komponen = 1 file
+- Props didestruktur
+- Class Tailwind rapih pake template literal
+
+============================================================
+1. KOMPONEN DASAR (Paling Singkat)
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  KOMPONEN CLIENT (DENGAN STATE)                        │
+├─────────────────────────────────────────────────────────┤
+│  "use client";                                         │
+│  import { useState } from "react";                     │
+│                                                        │
+│  const Component = () => {                             │
+│    const [state, setState] = useState(false);          │
+│    return <div>{/* isi */}</div>;                      │
+│  };                                                    │
+│                                                        │
+│  export default Component;                             │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  KOMPONEN SERVER (TANPA STATE)                         │
+├─────────────────────────────────────────────────────────┤
+│  import { prisma } from "@/lib/prisma";               │
+│                                                        │
+│  const Component = async () => {                       │
+│    const data = await prisma.model.findMany();         │
+│    return <div>{/* isi */}</div>;                      │
+│  };                                                    │
+│                                                        │
+│  export default Component;                             │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  KOMPONEN DENGAN PROPS                                 │
+├─────────────────────────────────────────────────────────┤
+│  interface Props { title: string; }                    │
+│                                                        │
+│  const Component = ({ title }: Props) => {             │
+│    return <h1>{title}</h1>;                            │
+│  };                                                    │
+│                                                        │
+│  export default Component;                             │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+2. POLA REUSABLE COMPONENT (BUTTON, CARD, INPUT)
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  BUTTON REUSABLE                                       │
+├─────────────────────────────────────────────────────────┤
+│  interface ButtonProps {                               │
+│    variant?: "primary" | "outline";                    │
+│    size?: "sm" | "md" | "lg";                          │
+│    children: React.ReactNode;                          │
+│  }                                                     │
+│                                                        │
+│  const Button = ({ variant = "primary", size = "md", children }: ButtonProps) => { │
+│    const styles = {                                    │
+│      primary: "bg-rabiku-blue text-white",             │
+│      outline: "border-2 border-rabiku-blue",           │
+│    };                                                  │
+│    const sizes = {                                     │
+│      sm: "px-4 py-2 text-sm",                          │
+│      md: "px-6 py-3 text-base",                        │
+│      lg: "px-8 py-4 text-lg",                          │
+│    };                                                  │
+│    return (                                            │
+│      <button className={`${styles[variant]} ${sizes[size]} rounded-lg`}> │
+│        {children}                                      │
+│      </button>                                         │
+│    );                                                  │
+│  };                                                    │
+│                                                        │
+│  export default Button;                                │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+3. POLA HALAMAN (PAGE)
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  HALAMAN PUBLIK                                        │
+├─────────────────────────────────────────────────────────┤
+│  import Component from "@/components/component";       │
+│                                                        │
+│  export default function Page() {                      │
+│    return (                                            │
+│      <main className="min-h-screen">                   │
+│        <Component />                                   │
+│      </main>                                           │
+│    );                                                  │
+│  }                                                     │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  HALAMAN DINAMIS (DENGAN PARAMS)                       │
+├─────────────────────────────────────────────────────────┤
+│  interface Props { params: { slug: string } }          │
+│                                                        │
+│  export default async function Page({ params }: Props) { │
+│    const { slug } = await params;                     │
+│    return <div>{slug}</div>;                           │
+│  }                                                     │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+4. POLA LAYOUT
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  LAYOUT DASAR                                          │
+├─────────────────────────────────────────────────────────┤
+│  export default function Layout({ children }: { children: React.ReactNode }) { │
+│    return (                                            │
+│      <html lang="id">                                  │
+│        <body className="bg-white text-gray-900">       │
+│          <Navbar />                                    │
+│          {children}                                    │
+│          <Footer />                                    │
+│        </body>                                         │
+│      </html>                                           │
+│    );                                                  │
+│  }                                                     │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+5. POLA UTILITY FUNCTIONS
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  UTILITY FUNCTIONS                                     │
+├─────────────────────────────────────────────────────────┤
+│  export const cn = (...classes: string[]) =>           │
+│    classes.filter(Boolean).join(" ");                  │
+│                                                        │
+│  export const formatDate = (date: Date) =>             │
+│    date.toLocaleDateString("id-ID");                   │
+│                                                        │
+│  export const generateSlug = (text: string) =>         │
+│    text.toLowerCase().replace(/\s+/g, "-");            │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+6. POLA API ROUTE
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  API ROUTE (GET)                                       │
+├─────────────────────────────────────────────────────────┤
+│  import { NextResponse } from "next/server";           │
+│  import { prisma } from "@/lib/prisma";               │
+│                                                        │
+│  export const GET = async () => {                      │
+│    const data = await prisma.model.findMany();         │
+│    return NextResponse.json(data);                     │
+│  };                                                    │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  API ROUTE (POST)                                      │
+├─────────────────────────────────────────────────────────┤
+│  export const POST = async (req: Request) => {         │
+│    const body = await req.json();                      │
+│    const data = await prisma.model.create({ data: body }); │
+│    return NextResponse.json(data, { status: 201 });    │
+│  };                                                    │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+7. POLA HOOKS (CUSTOM)
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  CUSTOM HOOK                                           │
+├─────────────────────────────────────────────────────────┤
+│  import { useState, useEffect } from "react";          │
+│                                                        │
+│  export const useLocalStorage = (key: string, initial: string) => { │
+│    const [value, setValue] = useState(initial);        │
+│                                                        │
+│    useEffect(() => {                                   │
+│      const stored = localStorage.getItem(key);         │
+│      if (stored) setValue(stored);                     │
+│    }, [key]);                                          │
+│                                                        │
+│    const update = (newValue: string) => {              │
+│      setValue(newValue);                               │
+│      localStorage.setItem(key, newValue);              │
+│    };                                                  │
+│                                                        │
+│    return [value, update] as const;                    │
+│  };                                                    │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+8. POLA TYPES / INTERFACES
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  TYPES FILE                                            │
+├─────────────────────────────────────────────────────────┤
+│  export interface User {                               │
+│    id: string;                                         │
+│    email: string;                                      │
+│    name?: string;                                      │
+│    role: "SUPER_ADMIN" | "ADMIN";                      │
+│  }                                                     │
+│                                                        │
+│  export interface WeddingSite {                        │
+│    id: string;                                         │
+│    slug: string;                                       │
+│    groomName: string;                                  │
+│    brideName: string;                                  │
+│    theme: "COKLAT" | "BIRU" | "PINK" | "HIJAU" | "UNGU"; │
+│    isActive: boolean;                                  │
+│  }                                                     │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+9. ATURAN PENULISAN SINGKAT
+============================================================
+
+1. Destructuring props langsung di parameter
+2. Pake arrow function untuk komponen kecil
+3. Hindari inline function di JSX (kecuali simple)
+4. Pake template literal untuk class conditional
+5. Export default di akhir file
+6. Pake `cn()` utility buat gabungin class
+7. Component name = file name (PascalCase)
+8. Props pake interface, bukan type (kecuali union)
+
+============================================================
+10. CONTOH FULL PAGE (TERAPAN)
+============================================================
+
+┌─────────────────────────────────────────────────────────┐
+│  src/app/page.tsx                                      │
+├─────────────────────────────────────────────────────────┤
+│  import Navbar from "@/components/layout/navbar";      │
+│  import Hero from "@/components/sections/hero";        │
+│                                                        │
+│  export default function Home() {                      │
+│    return (                                            │
+│      <main className="min-h-screen">                   │
+│        <Navbar />                                      │
+│        <Hero />                                        │
+│      </main>                                           │
+│    );                                                  │
+│  }                                                     │
+└─────────────────────────────────────────────────────────┘
+
+============================================================
+END OF TEMPLATE
+============================================================

@@ -1,0 +1,348 @@
+============================================================
+TEMPLATE FILE NAMING CONVENTION - NEXT.JS 14/15/16
+PROJECT: [NAMA PROJECT]
+FOKUS: STRUKTUR PENAMAAN FILE & FOLDER
+============================================================
+
+================================================================================
+                           APA ITU FILE NAMING CONVENTION?
+================================================================================
+
+File Naming Convention adalah standar penulisan nama file dan folder dalam 
+sebuah project yang bertujuan untuk:
+1. Memudahkan developer lain membaca dan memahami struktur project
+2. Menjaga konsistensi di seluruh codebase
+3. Menghindari error akibat case sensitivity (terutama di Linux)
+4. Memudahkan auto-import dan code completion di IDE
+
+================================================================================
+                        ATURAN DASAR (GOLDEN RULE)
+================================================================================
+
+📁 app/                    → SEMUA lowercase (WAJIB!)
+📁 components/             → PascalCase
+📁 hooks/                  → camelCase + awalan "use"
+📁 lib/                    → camelCase
+📁 types/                  → camelCase
+📁 services/               → camelCase
+📁 contexts/               → PascalCase
+📁 data/                   → camelCase
+📄 Root files (.env, dll)  → dot + lowercase
+
+================================================================================
+                        CARA MUDAH INGET
+================================================================================
+
+"App kecil, Component gede, sisanya kecil semua"
+
+📁 app/          → kecil semua (page.tsx, layout.tsx)
+📁 components/   → gede huruf depannya (Button.tsx)
+📁 hooks/        → kecil + use (useAuth.ts)
+📁 lib/          → kecil semua (utils.ts)
+📁 types/        → kecil semua (book.ts)
+📁 services/     → kecil semua (authService.ts)
+📁 contexts/     → gede huruf depannya (SearchContext.tsx)
+📄 Root files    → dot + kecil (.env.local)
+
+================================================================================
+                        LENGKAP PER JENIS FILE & FOLDER
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. APP ROUTER (src/app/) - HARUS LOWERCASE                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ page.tsx              - Halaman                                        │
+│  ✅ layout.tsx            - Layout                                        │
+│  ✅ route.ts              - API route                                     │
+│  ✅ loading.tsx           - Loading UI                                    │
+│  ✅ error.tsx             - Error UI                                      │
+│  ✅ not-found.tsx         - 404 Page                                      │
+│  ✅ middleware.ts         - Middleware (di root)                          │
+│  ✅ robots.ts             - Robots.txt generator                          │
+│  ✅ sitemap.ts            - Sitemap generator                             │
+│                                                                           │
+│  ❌ Page.tsx              - Salah! harus page.tsx                         │
+│  ❌ Layout.tsx            - Salah! harus layout.tsx                       │
+│  ❌ Route.ts              - Salah! harus route.ts                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2. COMPONENTS (src/components/) - PascalCase                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ Button.tsx            - UI Component                                  │
+│  ✅ Card.tsx              - UI Component                                  │
+│  ✅ Input.tsx             - UI Component                                  │
+│  ✅ BookCard.tsx          - Feature Component                             │
+│  ✅ LoginForm.tsx         - Feature Component                             │
+│  ✅ AdminLayout.tsx       - Layout Component                              │
+│  ✅ NavbarLinks.tsx       - Sub Component                                 │
+│                                                                           │
+│  ❌ button.tsx            - Salah! harus Button.tsx                       │
+│  ❌ book-card.tsx         - Salah! harus BookCard.tsx                     │
+│  ❌ login_form.tsx        - Salah! harus LoginForm.tsx                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 3. HOOKS (src/hooks/) - camelCase + awalan "use"                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ useAuth.ts            - Authentication hook                          │
+│  ✅ useBooks.ts           - Books data hook                              │
+│  ✅ useSearch.ts          - Search hook                                  │
+│  ✅ useLocalStorage.ts    - Local storage hook                           │
+│  ✅ useDebounce.ts        - Debounce hook                                │
+│                                                                           │
+│  ❌ auth.ts               - Salah! harus useAuth.ts                       │
+│  ❌ use-auth.ts           - Salah! harus useAuth.ts (kebab-case)         │
+│  ❌ use_books.ts          - Salah! harus useBooks.ts (snake_case)        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 4. LIBRARY / UTILITIES (src/lib/) - camelCase                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ prisma.ts             - Prisma client                                │
+│  ✅ utils.ts              - General utilities                            │
+│  ✅ formatDate.ts         - Date formatter                               │
+│  ✅ validation.ts         - Validation helpers                           │
+│  ✅ apiCache.ts           - API caching                                  │
+│  ✅ imageUtils.ts         - Image utilities                              │
+│                                                                           │
+│  ❌ Prisma.ts             - Salah! harus prisma.ts                        │
+│  ❌ format-date.ts        - Salah! harus formatDate.ts (kebab-case)      │
+│  ❌ utils.js              - Boleh tapi mending .ts                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 5. TYPES (src/types/) - camelCase                                        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ book.ts               - Book type                                    │
+│  ✅ user.ts               - User type                                    │
+│  ✅ api.ts                - API response types                           │
+│  ✅ index.ts              - Export all types                             │
+│  ✅ flowbite.d.ts         - Third-party type declarations                │
+│                                                                           │
+│  ❌ Book.ts               - Boleh tapi mending book.ts                    │
+│  ❌ book-types.ts         - Terlalu panjang, cukup book.ts               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 6. SERVICES (src/services/) - camelCase                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ authService.ts        - Auth business logic                          │
+│  ✅ bookService.ts        - Book business logic                          │
+│  ✅ transactionService.ts - Transaction business logic                   │
+│  ✅ emailService.ts       - Email service                                │
+│                                                                           │
+│  ❌ AuthService.ts        - Salah! harus authService.ts                   │
+│  ❌ auth-service.ts       - Salah! harus authService.ts (kebab-case)     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 7. CONTEXTS (src/contexts/) - PascalCase                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ SearchContext.tsx     - Search context                               │
+│  ✅ ThemeContext.tsx      - Theme context                                │
+│  ✅ AuthContext.tsx       - Auth context                                 │
+│                                                                           │
+│  ❌ searchContext.tsx     - Salah! harus SearchContext.tsx                │
+│  ❌ search-context.tsx    - Salah! harus SearchContext.tsx               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 8. DATA (src/data/) - camelCase                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ products.ts           - Product data                                 │
+│  ✅ users.ts              - User data                                    │
+│  ✅ categories.ts         - Category data                                │
+│  ✅ testimonials.ts       - Testimonial data                             │
+│                                                                           │
+│  ❌ Products.ts           - Salah! harus products.ts                      │
+│  ❌ product-data.ts       - Boleh tapi mending products.ts               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 9. CONSTANTS (src/constants/) - camelCase                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ apiEndpoints.ts       - API endpoint constants                       │
+│  ✅ config.ts             - App configuration                            │
+│  ✅ roles.ts              - Role constants                               │
+│  ✅ status.ts             - Status constants                             │
+│                                                                           │
+│  ❌ APIEndpoints.ts       - Salah! harus apiEndpoints.ts                  │
+│  ❌ config.js             - Boleh tapi mending .ts                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 10. FOLDER STRUCTURE (Nested Folders)                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ src/components/ui/           - UI components folder                   │
+│  ✅ src/components/books/        - Book components folder                 │
+│  ✅ src/app/(auth)/              - Auth route group                       │
+│  ✅ src/app/(dashboard)/         - Dashboard route group                  │
+│  ✅ src/app/api/books/[id]/      - Dynamic API route                     │
+│  ✅ src/app/admin/books/[id]/    - Dynamic page route                    │
+│  ✅ src/components/_private/     - Private components (underscore)       │
+│                                                                           │
+│  ❌ src/components/UI/           - Seharusnya ui/ (lowercase)             │
+│  ❌ src/app/Auth/               - Seharusnya (auth)/ (kebab-case)        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                        SPECIAL FILES (ROOT DIRECTORY)
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ROOT FILES - dot + lowercase                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ .env.local            - Local environment variables                  │
+│  ✅ .env.example          - Example environment                          │
+│  ✅ .gitignore            - Git ignore file                             │
+│  ✅ .eslintrc.json        - ESLint configuration                        │
+│  ✅ .prettierrc           - Prettier configuration                      │
+│  ✅ .editorconfig         - Editor configuration                        │
+│                                                                           │
+│  ❌ .env.Production       - Boleh tapi .env.production lebih umum        │
+│  ❌ .GitIgnore            - Salah! harus .gitignore                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ CONFIG FILES - lowercase                                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ next.config.js        - Next.js config                                │
+│  ✅ next.config.ts        - Next.js config (TypeScript)                  │
+│  ✅ tailwind.config.js    - Tailwind config                               │
+│  ✅ tailwind.config.ts    - Tailwind config (TypeScript)                 │
+│  ✅ postcss.config.js     - PostCSS config                               │
+│  ✅ postcss.config.mjs    - PostCSS config (ES Module)                   │
+│  ✅ eslint.config.mjs     - ESLint config (ES Module)                    │
+│  ✅ tsconfig.json         - TypeScript config                            │
+│  ✅ package.json          - NPM package config                           │
+│  ✅ package-lock.json     - NPM lock file                               │
+│                                                                           │
+│  ❌ Next.config.js        - Salah! harus next.config.js                   │
+│  ❌ TailwindConfig.js     - Salah! harus tailwind.config.js              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                        PERBANDINGAN: BENAR vs SALAH
+================================================================================
+
+┌─────────────────────────────┬─────────────────────────────────────────────┐
+│ ✅ BENAR                     │ ❌ SALAH                                  │
+├─────────────────────────────┼─────────────────────────────────────────────┤
+│ app/page.tsx                │ app/Page.tsx                              │
+│ app/layout.tsx              │ app/Layout.tsx                            │
+│ app/api/books/route.ts      │ app/api/books/Route.ts                    │
+│ components/Button.tsx       │ components/button.tsx                     │
+│ components/BookCard.tsx     │ components/book-card.tsx                  │
+│ components/LoginForm.tsx    │ components/login_form.tsx                 │
+│ hooks/useAuth.ts            │ hooks/auth.ts                             │
+│ hooks/useBooks.ts           │ hooks/use-books.ts                        │
+│ lib/prisma.ts               │ lib/Prisma.ts                             │
+│ lib/formatDate.ts           │ lib/format-date.ts                        │
+│ types/book.ts               │ types/Book.ts                             │
+│ services/authService.ts     │ services/AuthService.ts                   │
+│ contexts/SearchContext.tsx  │ contexts/searchContext.tsx                │
+│ data/products.ts            │ data/Products.ts                          │
+│ constants/apiEndpoints.ts   │ constants/APIEndpoints.ts                │
+│ .env.local                  │ .env.Local                                │
+│ next.config.js              │ Next.config.js                            │
+│ tailwind.config.js          │ Tailwind.config.js                        │
+└─────────────────────────────┴─────────────────────────────────────────────┘
+
+================================================================================
+                       COMMON MISTAKES & SOLUSI
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MASALAH 1: Campur-campur gaya penamaan                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Gejala: Ada kebab-case, ada PascalCase, ada camelCase dalam 1 project    │
+│ Solusi: Pilih 1 gaya dan konsisten dari awal                             │
+│ Tools: ESLint dengan rule naming-convention                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MASALAH 2: File page.tsx ditulis Page.tsx                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Gejala: NextJS error "Page not found"                                    │
+│ Solusi: NextJS WAJIB lowercase untuk special files                       │
+│ Ingat: page.tsx, layout.tsx, route.ts HARUS lowercase                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MASALAH 3: Component file pake kebab-case                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Gejala: Susah dibaca, ga keliatan mana component                         │
+│ Solusi: Component harus PascalCase (Button.tsx, Card.tsx)               │
+│ Alasan: Biar keliatan beda sama utility file                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MASALAH 4: Hook tanpa awalan "use"                                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Gejala: ESLint error "React Hook names must start with 'use'"           │
+│ Solusi: Semua custom hooks HARUS pake awalan "use"                       │
+│ Contoh: useAuth.ts, useBooks.ts, useSearch.ts                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                    ESLINT CONFIG UNTUK ENFORCE NAMING
+================================================================================
+
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "function",
+        "format": ["camelCase", "PascalCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ]
+  }
+}
+
+================================================================================
+                        CHEAT SHEET CEPAT
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ JENIS FILE          │ FORMAT         │ CONTOH                           │
+├─────────────────────┼────────────────┼───────────────────────────────────┤
+│ App Router          │ lowercase      │ page.tsx, layout.tsx, route.ts    │
+│ Components          │ PascalCase     │ Button.tsx, BookCard.tsx          │
+│ Hooks               │ camelCase+use  │ useAuth.ts, useBooks.ts           │
+│ Utilities           │ camelCase      │ utils.ts, formatDate.ts           │
+│ Types               │ camelCase      │ book.ts, user.ts                  │
+│ Services            │ camelCase      │ authService.ts, bookService.ts    │
+│ Contexts            │ PascalCase     │ SearchContext.tsx                 │
+│ Data                │ camelCase      │ products.ts, users.ts             │
+│ Constants           │ camelCase      │ apiEndpoints.ts, config.ts        │
+│ Root Files          │ dot+lowercase  │ .env.local, .gitignore            │
+│ Config Files        │ lowercase      │ next.config.js, package.json      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                        REFERENSI
+================================================================================
+
+Next.js File Conventions: https://nextjs.org/docs/app/api-reference/file-conventions
+React Component Naming: https://react.dev/learn/your-first-component#components-are-functions
+TypeScript Naming: https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
+ESLint Naming Convention: https://typescript-eslint.io/rules/naming-convention/
+
+================================================================================
+END OF TEMPLATE
+================================================================================

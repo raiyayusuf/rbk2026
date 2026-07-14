@@ -1,8 +1,8 @@
 ============================================================
-TEMPLATE KOMENTAR RABIKU.ID (rbk2026)
+TEMPLATE KOMENTAR RABIKU.COM (rbk2026)
 ============================================================
 
-Project    : rbk2026 (Rabiku.id)
+Project    : rbk2026 (Rabiku.com)
 Tech Stack : Next.js 16, TypeScript, Tailwind CSS, Prisma, Neon, NextAuth
 Author     : GSE Jogja Style
 
@@ -21,7 +21,7 @@ Contoh:
 
 /* ============================================
    src/components/landing/hero-section.tsx
-   HERO SECTION UNTUK LANDING PAGE RABIKU.ID
+   HERO SECTION UNTUK LANDING PAGE RABIKU.COM
    ============================================ */
 
 /* ============================================
@@ -98,7 +98,7 @@ Contoh:
 
 
 ============================================================
-4. CATEGORY SPESIFIK RABIKU.ID
+4. CATEGORY SPESIFIK RABIKU.COM
 ============================================================
 
 KOMENTAR UNTUK KOMPONEN WEDDING (Customer Website):
@@ -131,10 +131,12 @@ KOMENTAR UNTUK KOMPONEN WEDDING (Customer Website):
    SECTION TANDA KASIH (KADO)
    ============================================ */
 
-/* ============================================   SECTION BUKU TAMU (RSVP)
+/* ============================================
+   SECTION BUKU TAMU (RSVP)
    ============================================ */
 
-/* ============================================   SECTION TERIMA KASIH PENUTUP
+/* ============================================
+   SECTION TERIMA KASIH PENUTUP
    ============================================ */
 
 KOMENTAR UNTUK DASHBOARD ADMIN (Customer):
@@ -143,13 +145,16 @@ KOMENTAR UNTUK DASHBOARD ADMIN (Customer):
    SIDEBAR NAVIGATION
    ============================================ */
 
-/* ============================================   EDIT WEBSITE (INLINE EDITING)
+/* ============================================
+   EDIT WEBSITE (INLINE EDITING)
    ============================================ */
 
-/* ============================================   RSVP GUEST LIST
+/* ============================================
+   RSVP GUEST LIST
    ============================================ */
 
-/* ============================================   WEBSITE SETTINGS
+/* ============================================
+   WEBSITE SETTINGS
    ============================================ */
 
 KOMENTAR UNTUK SUPER ADMIN:
@@ -166,7 +171,8 @@ KOMENTAR UNTUK SUPER ADMIN:
    SONG MANAGEMENT
    ============================================ */
 
-/* ============================================   EXPIRED DATE HANDLING
+/* ============================================
+   EXPIRED DATE HANDLING
    ============================================ */
 
 KOMENTAR UNTUK DATABASE / PRISMA:
@@ -175,15 +181,17 @@ KOMENTAR UNTUK DATABASE / PRISMA:
    PRISMA SCHEMA DEFINITION
    ============================================ */
 
-/* ============================================   DATABASE QUERIES
+/* ============================================
+   DATABASE QUERIES
    ============================================ */
 
-/* ============================================   MIGRATION SEEDING
+/* ============================================
+   MIGRATION SEEDING
    ============================================ */
 
 
 ============================================================
-ATURAN TAMBAHAN KHUSUS RABIKU.ID
+ATURAN TAMBAHAN KHUSUS RABIKU.COM
 ============================================================
 
 1. Komentar awal file WAJIB ada di setiap file, tanpa terkecuali.
@@ -206,6 +214,8 @@ ATURAN TAMBAHAN KHUSUS RABIKU.ID
 
 8. Untuk warna brand, gunakan "Rabiku Blue" dengan hex #1659A0
    dan varian opacity (/5, /10, /20, /40, /60, /80, /100).
+
+9. Domain yang digunakan adalah rabiku.com (bukan .id).
 
 
 ============================================================

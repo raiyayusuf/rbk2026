@@ -1,6 +1,6 @@
 /* ============================================
    src/app/globals.css
-   GLOBAL STYLES - RABIKU.ID
+   GLOBAL STYLES - RABIKU.COM
    ============================================ */
 
 @import "tailwindcss";
@@ -36,14 +36,14 @@
 }
 
 /* ============================================
-   DARK MODE 
+   DARK MODE (DI NONAKTIFKAN - PAKSA LIGHT)
    ============================================ */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 /* ============================================
    GLOBAL BODY STYLES
@@ -55,7 +55,7 @@ body {
 }
 
 /* ============================================
-   CUSTOM SCROLLBAR
+   CUSTOM SCROLLBAR WITH RABIKU COLORS
    ============================================ */
 ::-webkit-scrollbar {
   width: 8px;
@@ -90,30 +90,26 @@ body {
 /* ============================================
    UTILITY CLASSES
    ============================================ */
-@layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* ============================================
-   CUSTOM UTILITY (kalo perlu)
+   BASE LAYER
    ============================================ */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
   }
 }
 
+/* ============================================
+   COMPONENT LAYER
+   ============================================ */
 @layer components {
   .container-custom {
     max-width: 80rem;

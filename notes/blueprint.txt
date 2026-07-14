@@ -1,11 +1,11 @@
 ================================================================================
-                        RABIKU.ID - WEBSITE WEDDING
+                        RABIKU.COM - WEBSITE WEDDING
                         Arsitektur & Perencanaan Proyek
 ================================================================================
 
 1. VISI & MODEL BISNIS
 ================================================================================
-Rabiku.id adalah platform jasa pembuatan website wedding dengan model sewa 
+Rabiku.com adalah platform jasa pembuatan website wedding dengan model sewa 
 berlangganan. Customer menyewa website untuk durasi tertentu (2-3 bulan) 
 sesuai masa pernikahan mereka.
 
@@ -25,54 +25,54 @@ Nama Repo GitHub:
 ================================================================================
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  SUPER ADMIN (Pemilik/Pengembang)                                     │
-│  - Akses: rabiku.id/super-admin                                      │
-│  - Membuat & mengelola akun customer                                 │
-│  - Menentukan tema untuk setiap customer                             │
-│  - Mengatur masa aktif/expired website                               │
-│  - Melihat semua data customer                                       │
-│  - Mengelola daftar tema & desain                                    │
+│  SUPER ADMIN (Pemilik/Pengembang)                                       │
+│  - Akses: rabiku.com/super-admin                                        │
+│  - Membuat & mengelola akun customer                                    │
+│  - Menentukan tema untuk setiap customer                                │
+│  - Melihat semua data customer                                          │
+│  - Mengatur masa aktif/expired website                                  │
+│  - Mengelola daftar tema & desain                                       │
 └─────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  ADMIN (Customer / Pembeli)                                           │
-│  - Akses: rabiku.id/login                                            │
-│  - Dashboard: rabiku.id/dashboard                                    │
-│  - Mengedit semua konten website wedding sendiri                     │
-│  - Melihat statistik tamu (RSVP)                                     │
-│  - Tidak bisa mengubah tema (ditentukan Super Admin)                 │
-│  - Halaman edit terintegrasi dengan preview langsung                │
+│  ADMIN (Customer / Pembeli)                                             │
+│  - Akses: rabiku.com/login                                              │
+│  - Dashboard: rabiku.com/dashboard                                      │
+│  - Mengedit semua konten website wedding sendiri                        │
+│  - Melihat statistik tamu (RSVP)                                        │
+│  - Tidak bisa mengubah tema (ditentukan Super Admin)                    │
+│  - Halaman edit terintegrasi dengan preview langsung                    │
 └─────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  USER (Tamu / Pengunjung)                                            │
-│  - Akses: rabiku.id/[slug-customer]                                 │
-│  - Tidak perlu login                                                 │
-│  - Hanya bisa melihat website wedding (read-only)                    │
-│  - Bisa mengisi RSVP/Buku Tamu                                      │
-│  - Bisa melihat galeri foto & info pernikahan                       │
+│  USER (Tamu / Pengunjung)                                               │
+│  - Akses: rabiku.com/[slug-customer]                                    │
+│  - Tidak perlu login                                                    │
+│  - Hanya bisa melihat website wedding (read-only)                       │
+│  - Bisa mengisi RSVP/Buku Tamu                                          │
+│  - Bisa melihat galeri foto & info pernikahan                           │
 └─────────────────────────────────────────────────────────────────────────┘
 
 
 3. STRUKTUR URL & ROUTING
 ================================================================================
 
-rabiku.id                       → Halaman landing page utama
-rabiku.id/super-admin           → Dashboard Super Admin
-rabiku.id/login                 → Halaman login semua role
-rabiku.id/dashboard             → Dashboard Admin (customer)
-rabiku.id/[slug]                → Halaman publik website wedding customer
-    Contoh: rabiku.id/yusuf-aleksia
-rabiku.id/[slug]/rsvp           → Halaman konfirmasi tamu (opsional)
-rabiku.id/api/*                 → API endpoints untuk semua fitur
+rabiku.com                       → Halaman landing page utama
+rabiku.com/super-admin           → Dashboard Super Admin
+rabiku.com/login                 → Halaman login semua role
+rabiku.com/dashboard             → Dashboard Admin (customer)
+rabiku.com/[slug]                → Halaman publik website wedding customer
+    Contoh: rabiku.com/yusuf-aleksia
+rabiku.com/[slug]/rsvp           → Halaman konfirmasi tamu (opsional)
+rabiku.com/api/*                 → API endpoints untuk semua fitur
 
 
-4. LANDING PAGE RABIKU.ID (Untuk Calon Pembeli)
+4. LANDING PAGE RABIKU.COM (Untuk Calon Pembeli)
 ================================================================================
 
-Halaman utama rabiku.id adalah landing page untuk marketing, berisi:
+Halaman utama rabiku.com adalah landing page untuk marketing, berisi:
 
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  NAVBAR (Sticky)                                                      │
@@ -89,7 +89,7 @@ Halaman utama rabiku.id adalah landing page untuk marketing, berisi:
 │     - Masing-masing tema preview dengan gaya berbeda                  │
 │                                                                         │
 │  3. TENTANG SECTION                                                   │
-│     - Penjelasan tentang Rabiku.id                                    │
+│     - Penjelasan tentang Rabiku.com                                   │
 │     - Keunggulan & fitur                                              │
 │                                                                         │
 │  4. TESTIMONIAL SECTION                                               │
@@ -105,7 +105,7 @@ Halaman utama rabiku.id adalah landing page untuk marketing, berisi:
 └─────────────────────────────────────────────────────────────────────────┘
 
 
-5. HALAMAN WEBSITE WEDDING CUSTOMER (rabiku.id/[slug])
+5. HALAMAN WEBSITE WEDDING CUSTOMER (rabiku.com/[slug])
 ================================================================================
 
 Setiap customer memiliki 1 halaman website wedding dengan 10 section:
@@ -246,12 +246,12 @@ Sumber Lagu:
 
 FRONTEND:
 ─────────────────────────────────────────────────────────
-Framework      : Next.js 14+ (App Router)
-Styling        : Tailwind CSS
+Framework      : Next.js 16 (App Router)
+Styling        : Tailwind CSS v4
 UI Components  : Custom (tidak pakai library UI)
 State Management: React Context / Zustand (jika diperlukan)
-Animation      : Framer Motion / AOS (scroll animation)
-Form           : React Hook Form
+Animation      : Framer Motion
+Form           : React Hook Form + Zod
 Toast/Notif    : React Hot Toast / Sonner
 
 BACKEND:
@@ -259,7 +259,7 @@ BACKEND:
 Runtime        : Node.js (Next.js API Routes)
 ORM            : Prisma
 Database       : Neon (PostgreSQL) - Serverless
-Authentication : NextAuth.js / JWT + bcrypt
+Authentication : NextAuth.js + bcrypt
 Validation     : Zod
 
 STORAGE (File/Asset):
@@ -272,19 +272,29 @@ DEPLOYMENT & HOSTING:
 ─────────────────────────────────────────────────────────
 Hosting        : Vercel (serverless)
 Database       : Neon (PostgreSQL) - terintegrasi dengan Vercel
-Domain         : rabiku.id (custom domain ke Vercel)
+Domain         : rabiku.com (custom domain ke Vercel)
 SSL            : Otomatis dari Vercel
 
 DEV TOOLS:
 ─────────────────────────────────────────────────────────
-Package Manager: npm / yarn
+Package Manager: npm
 Version Control: Git + GitHub (repo: rbk2026)
 Linting        : ESLint
 Formatting     : Prettier
 Type Checking  : TypeScript (strict mode)
 
 
-10. DATABASE SCHEMA (Konsep)
+10. BRAND COLOR
+================================================================================
+
+Primary         : #1659A0 (Rabiku Blue)
+Background      : #FFFFFF (Putih)
+Text            : #1A1A1A (Hitam)
+Variasi         : Opacity (5%, 10%, 20%, 40%, 60%, 80%, 100%)
+Tailwind        : bg-rabiku-blue/10, text-rabiku-blue/60, dst
+
+
+11. DATABASE SCHEMA (Konsep)
 ================================================================================
 
 TABEL USER:
@@ -296,14 +306,6 @@ TABEL USER:
 - role (SUPER_ADMIN, ADMIN)
 - createdAt
 - updatedAt
-
-BRAND COLOR:
-─────────────────────────────────────────────────────────
-Primary      : #1659A0 (Rabiku Blue)
-Background   : #FFFFFF (Putih)
-Text         : #1A1A1A (Hitam)
-Variasi      : Opacity (5%, 10%, 20%, 40%, 60%, 80%, 100%)
-Tailwind     : bg-rabiku-blue/10, text-rabiku-blue/60, dst
 
 TABEL WEDDING_SITE:
 ─────────────────────────────────────────────────────────
@@ -382,12 +384,12 @@ TABEL TESTIMONIAL (Untuk landing page):
 - isActive (Boolean)
 
 
-11. FITUR UTAMA & PRIORITAS
+12. FITUR UTAMA & PRIORITAS
 ================================================================================
 
 MUST HAVE (MVP - Fase 1):
 ─────────────────────────────────────────────────────────
-✅ Landing page rabiku.id
+✅ Landing page rabiku.com
 ✅ Super Admin dashboard (create user, set tema, aktif/nonaktif)
 ✅ Admin dashboard (edit konten)
 ✅ Halaman publik website wedding (10 section)
@@ -420,7 +422,7 @@ FUTURE (Fase 3):
 ⭐ Mobile App untuk tamu
 
 
-12. KONSEP BISNIS & ONBOARDING
+13. KONSEP BISNIS & ONBOARDING
 ================================================================================
 
 Alur Pembelian:
@@ -431,7 +433,7 @@ Alur Pembelian:
 4. Admin cek pembayaran (manual)
 5. Admin buat akun di Super Admin dashboard
    - Isi: nama, email, password, pilih tema
-6. Admin kasih tahu customer: "Silakan login di rabiku.id/login"
+6. Admin kasih tahu customer: "Silakan login di rabiku.com/login"
 7. Customer login dan mulai edit website
 8. Website aktif sesuai durasi sewa (2-3 bulan)
 9. Admin bisa extend/disable dari Super Admin
@@ -445,12 +447,12 @@ Harga Paket (estimasi):
 Catatan: Harga bisa disesuaikan, ini hanya estimasi awal.
 
 
-13. HALAMAN YANG PERLU DIBUAT
+14. HALAMAN YANG PERLU DIBUAT
 ================================================================================
 
 HALAMAN PUBLIK (Tanpa Login):
 ─────────────────────────────────────────────────────────
-- /                      → Landing page Rabiku.id
+- /                      → Landing page Rabiku.com
 - /[slug]                → Website wedding customer (public)
 - /[slug]/rsvp           → Form RSVP (opsional, bisa di halaman yang sama)
 - /login                 → Halaman login
@@ -491,13 +493,13 @@ API ENDPOINTS:
 - /api/upload/audio (Cloudinary/Firebase)
 
 
-14. ESTIMASI WAKTU PENGERJAAN
+15. ESTIMASI WAKTU PENGERJAAN
 ================================================================================
 
 Fase 1 - MVP (1-2 bulan):
 ─────────────────────────────────────────────────────────
 - Setup project & tech stack       : 1 minggu
-- Landing page rabiku.id           : 1 minggu
+- Landing page rabiku.com          : 1 minggu
 - Sistem auth (login)              : 3 hari
 - Super Admin dashboard            : 1 minggu
 - Admin dashboard (edit website)   : 1 minggu
@@ -523,7 +525,7 @@ Fase 3 - Scale (2-3 bulan):
 - Drag & drop builder
 
 
-15. PERTIMBANGAN TEKNIS PENTING
+16. PERTIMBANGAN TEKNIS PENTING
 ================================================================================
 
 1. PERFORMANCE:
@@ -567,8 +569,8 @@ Catatan: Dokumentasi ini adalah blueprint awal. Detail teknis dan implementasi
 akan disesuaikan selama proses pengembangan. Semua keputusan dapat berubah
 sesuai kebutuhan dan feedback dari customer.
 
-Versi: 1.0
-Tanggal: [Sesuaikan dengan tanggal diskusi]
-Status: Final Draft - Menunggu Persetujuan
+Versi: 1.1
+Tanggal: 14 Juli 2026
+Status: Updated - Rabiku.com
 
 ================================================================================

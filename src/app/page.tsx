@@ -1,6 +1,6 @@
 /* ============================================
    src/app/page.tsx
-   LANDING PAGE RABIKU.ID
+   LANDING PAGE RABIKU.COM
    ============================================ */
 
 import Navbar from "@/components/landing/navbar";

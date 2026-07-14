@@ -1,0 +1,135 @@
+============================================================
+TEMPLATE COMMIT MESSAGES - RABIKU.COM (rbk2026)
+PROJECT: rbk2026 (Rabiku.com)
+FOKUS: TERMINAL DESKTOP (CMD / PowerShell / Git Bash)
+============================================================
+
+================================================================================
+                           APA ITU CONVENTIONAL COMMITS?
+================================================================================
+
+Conventional Commits adalah standar penulisan pesan commit yang mudah dibaca oleh manusia dan mesin, memudahkan auto-generate CHANGELOG, membantu semantic versioning, dan merupakan standar global yang dipakai banyak project open source.
+
+Format dasar: <type>(<scope>): <subject> [optional body] [optional footer]
+
+================================================================================
+                        TYPE YANG TERSEDIA
+================================================================================
+
+feat     - Fitur baru untuk user (contoh: feat(wedding): add theme selector)
+fix      - Perbaikan bug (contoh: fix(auth): resolve login redirect loop)
+chore    - Tugas maintenance (contoh: chore: update dependencies)
+docs     - Update dokumentasi (contoh: docs: update README)
+style    - Perubahan styling CSS atau formatting (contoh: style: adjust navbar padding)
+refactor - Refactor kode tanpa perubahan fungsi (contoh: refactor: extract button component)
+perf     - Performance improvement (contoh: perf: optimize image loading)
+test     - Update test (contoh: test: add unit tests for auth)
+revert   - Rollback commit sebelumnya (contoh: revert: revert "feat: add theme")
+build    - Perubahan build system atau dependencies (contoh: build: update Next.js)
+ci       - Perubahan CI/CD configuration (contoh: ci: add GitHub Actions workflow)
+
+================================================================================
+                        SCOPE (OPSIONAL)
+================================================================================
+
+auth, admin, wedding, theme, song, rsvp, landing, dashboard, ui, api, db, seo, config, layout, security, deploy, dependencies
+
+================================================================================
+                     CARA COMMIT VIA TERMINAL DESKTOP
+================================================================================
+
+⚠️ SEMUA CARA DI BAWAH INI DILAKUKAN DI TERMINAL DESKTOP (CMD/PowerShell/Git Bash) ⚠️
+
+CARA 1: SINGLE LINE (UNTUK COMMIT SEDERHANA)
+git commit -m "feat(landing): add hero section with animations"
+
+CARA 2: MULTI LINE DENGAN -m BERKALI-KALI (RECOMENDED UNTUK WINDOWS CMD)
+git commit -m "feat(landing): add hero section with animations" -m "- Add Hero component with Framer Motion" -m "- Add CTA buttons" -m "- Add stats section"
+
+CARA 3: DENGAN FOOTER (Closes / Fixes) - PAKE -m BERKALI-KALI
+git commit -m "feat(auth): implement login page" -m "- Add login form with validation" -m "- Add NextAuth configuration" -m "- Add session handling" -m "" -m "Closes #12"
+
+CARA 4: UNTUK CHORE / UPDATE DEPENDENCIES
+git commit -m "chore(dependencies): update packages" -m "- framer-motion: 12.42.2" -m "- lucide-react: 1.24.0" -m "- prisma: 7.8.0"
+
+⚠️ PERINGATAN UNTUK WINDOWS CMD: JANGAN pake enter langsung di antara baris, gunakan -m untuk setiap baris.
+
+================================================================================
+                    PERBANDINGAN TAMPILAN DI GITHUB
+================================================================================
+
+Single line (-m "feat: add hero") → feat: add hero (1 baris)
+Multi line (-m "feat: add hero" -m "- Add component" -m "- Add animation") → feat: add hero dengan body di bawahnya
+Dengan footer (-m "feat: add hero" -m "- Add component" -m "" -m "Closes #42") → feat: add hero dengan body dan footer
+
+================================================================================
+                        ATURAN PENTING
+================================================================================
+
+Subject (baris 1) maksimal 72 karakter dan jangan diakhiri titik, Body dipisah dengan 1 baris kosong dari subject dan boleh panjang dengan bullet points (-), Footer untuk referensi issue (Closes #42, Fixes #15), dan untuk baris kosong di terminal pake -m "". Contoh benar: git commit -m "feat: add theme" -m "- Add theme selector" -m "- Add 5 themes" -m "" -m "Closes #42", contoh salah (gak ada baris kosong): git commit -m "feat: add theme" -m "- Add theme selector" -m "- Add 5 themes" -m "Closes #42"
+
+================================================================================
+                     TEMPLATE COMMIT UNTUK RABIKU (COPY PASTE)
+================================================================================
+
+FEAT (Fitur Baru): 
+git commit -m "feat(<scope>): <deskripsi singkat fitur>" -m "- <perubahan 1>" -m "- <perubahan 2>" -m "- <perubahan 3>" -m "" -m "Closes #<issue-number>"
+
+FIX (Perbaikan Bug): 
+git commit -m "fix(<scope>): <deskripsi singkat bug>" -m "<penjelasan masalah dan solusi>" -m "" -m "Fixes #<issue-number>"
+
+CHORE (Tugas Maintenance): 
+git commit -m "chore(<scope>): <deskripsi tugas>" -m "- <perubahan 1>" -m "- <perubahan 2>"
+
+DOCS (Dokumentasi): 
+git commit -m "docs: <deskripsi update dokumentasi>" -m "<detail perubahan>"
+
+STYLE (Styling): 
+git commit -m "style(<scope>): <deskripsi perubahan styling>" -m "- <perubahan 1>" -m "- <perubahan 2>"
+
+REFACTOR (Refactor Kode): 
+git commit -m "refactor(<scope>): <deskripsi refactor>" -m "- <perubahan 1>" -m "- <perubahan 2>"
+
+SECURITY (Keamanan): 
+git commit -m "security: <deskripsi perubahan keamanan>" -m "- <perubahan 1>" -m "- <perubahan 2>"
+
+================================================================================
+                   COMMIT YANG SUDAH KITA PAKAI (REFERENSI)
+================================================================================
+
+1. git commit -m "update: setup" -m "- Setup Next.js 16 with src folder" -m "- Setup Tailwind CSS v4" -m "- Setup Prisma schema" -m "- Setup folder structure"
+
+2. git commit -m "feat(landing): add navbar and hero section" -m "- Add navbar with logo and links" -m "- Add hero section with animations" -m "- Add Rabiku Blue brand color (#1659A0)"
+
+3. git commit -m "feat(ui): add reusable button component" -m "- Add Button component with variants" -m "- Add sizes: xs, sm, md, lg, xl, hero" -m "- Add fullWidth prop"
+
+4. git commit -m "style(navbar): change login button to outline variant" -m "- Login button default: outline with blue border and blue text" -m "- Login button hover: solid blue background with white text"
+
+5. git commit -m "fix(globals): fix Tailwind CSS v4 utility classes" -m "- Remove manual utility classes" -m "- Let Tailwind generate from config" -m "- Fix hover not working"
+
+6. git commit -m "refactor(navbar): simplify and cleanup code" -m "- Extract NavButton component" -m "- Use destructuring for navLinks" -m "- Reduce code duplication"
+
+================================================================================
+                        CHEAT SHEET CEPAT
+================================================================================
+
+git commit -m "feat: add theme" → Single line commit
+git commit -m "feat: add theme" -m "body" → Multi line (2 baris)
+git commit -m "feat: add theme" -m "- 1" -m "- 2" → Multi line dengan list
+git commit -m "feat: add theme" -m "" -m "Closes #42" → Dengan footer
+git commit --amend → Edit commit terakhir
+git commit --amend -m "pesan baru" → Ganti message commit terakhir
+git log --oneline → Lihat history commit
+git log --oneline --graph → Lihat history dengan graph
+
+================================================================================
+                        REFERENSI
+================================================================================
+
+Official Documentation: https://www.conventionalcommits.org/
+Next.js Commit Convention: https://github.com/vercel/next.js/blob/canary/contributing.md#commit-message
+Angular Commit Convention: https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit
+
+================================================================================
+END OF TEMPLATE
+================================================================================
