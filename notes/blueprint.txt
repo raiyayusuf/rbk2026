@@ -75,33 +75,33 @@ rabiku.com/api/*                 → API endpoints untuk semua fitur
 Halaman utama rabiku.com adalah landing page untuk marketing, berisi:
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  NAVBAR (Sticky)                                                      │
-│  Logo | Beranda | Tema | Tentang | Testimonial | FAQ                │
+│  NAVBAR (Sticky)                                                        │
+│  Logo | Beranda | Tema | Tentang | Testimonial | FAQ                    │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  1. HERO SECTION                                                       │
-│     - Tagline: "Undangan Pernikahan Digital"                          │
-│     - CTA: "Pesan Sekarang" atau "Lihat Tema"                        │
+│  1. HERO SECTION                                                        │
+│     - Tagline: "Undangan Pernikahan Digital"                            │
+│     - CTA: "Pesan Sekarang" atau "Lihat Tema"                           │
 │                                                                         │
-│  2. TEMA SECTION                                                      │
-│     - Filter: [Semua] [Coklat] [Biru] [Pink] [Hijau] [Ungu]          │
-│     - Grid preview 5 tema (1 per warna)                               │
-│     - Masing-masing tema preview dengan gaya berbeda                  │
+│  2. TEMA SECTION                                                        │
+│     - Filter: [Semua] [Coklat] [Biru] [Pink] [Hijau] [Ungu]             │
+│     - Grid preview 5 tema (1 per warna)                                 │
+│     - Masing-masing tema preview dengan gaya berbeda                    │
 │                                                                         │
-│  3. TENTANG SECTION                                                   │
-│     - Penjelasan tentang Rabiku.com                                   │
-│     - Keunggulan & fitur                                              │
+│  3. TENTANG SECTION                                                     │
+│     - Penjelasan tentang Rabiku.com                                     │
+│     - Keunggulan & fitur                                                │
 │                                                                         │
-│  4. TESTIMONIAL SECTION                                               │
-│     - Review dari customer sebelumnya                                │
+│  4. TESTIMONIAL SECTION                                                 │
+│     - Review dari customer sebelumnya                                   │
 │                                                                         │
-│  5. FAQ SECTION                                                       │
-│     - Pertanyaan umum & jawaban                                       │
+│  5. FAQ SECTION                                                         │
+│     - Pertanyaan umum & jawaban                                         │
 │                                                                         │
-│  6. FOOTER                                                            │
-│     - Kontak WhatsApp                                                 │
-│     - Social media                                                    │
-│     - Copyright                                                       │
+│  6. FOOTER                                                              │
+│     - Kontak WhatsApp                                                   │
+│     - Social media                                                      │
+│     - Copyright                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 
 

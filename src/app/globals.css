@@ -6,47 +6,15 @@
 @import "tailwindcss";
 
 /* ============================================
-   RABIKU BRAND COLOR VARIABLES
+   ROOT VARIABLES
    ============================================ */
 :root {
-  /* Rabiku Brand Colors */
-  --rabiku-blue: #1659a0;
-  --rabiku-blue-dark: #0e3b6c;
-  --rabiku-blue-light: #e8f0f8;
-
-  /* Default theme (Light mode) */
   --background: #ffffff;
   --foreground: #1a1a1a;
 }
 
 /* ============================================
-   THEME EXTENSIONS
-   ============================================ */
-@theme inline {
-  /* Rabiku Custom Colors */
-  --color-rabiku-blue: var(--rabiku-blue);
-  --color-rabiku-blue-dark: var(--rabiku-blue-dark);
-  --color-rabiku-blue-light: var(--rabiku-blue-light);
-
-  /* Default theme colors */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* ============================================
-   DARK MODE (DI NONAKTIFKAN - PAKSA LIGHT)
-   ============================================ */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* ============================================
-   GLOBAL BODY STYLES
+   GLOBAL BODY
    ============================================ */
 body {
   background: var(--background);
@@ -55,43 +23,32 @@ body {
 }
 
 /* ============================================
-   CUSTOM SCROLLBAR WITH RABIKU COLORS
+   SCROLLBAR
    ============================================ */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--rabiku-blue);
+  background: #1659a0;
 }
 
 /* ============================================
-   SELECTION COLOR
+   SELECTION
    ============================================ */
 ::selection {
-  background-color: var(--rabiku-blue);
+  background-color: #1659a0;
   color: white;
 }
-
 ::-moz-selection {
-  background-color: var(--rabiku-blue);
+  background-color: #1659a0;
   color: white;
-}
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }
 
 /* ============================================
@@ -101,8 +58,12 @@ body {
   html {
     scroll-behavior: smooth;
   }
-
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: bold;
   }
 }
@@ -133,14 +94,12 @@ body {
     padding-right: 1.5rem;
   }
 }
-
 @media (min-width: 768px) {
   .section-padding {
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 }
-
 @media (min-width: 1024px) {
   .container-custom {
     padding-left: 2rem;

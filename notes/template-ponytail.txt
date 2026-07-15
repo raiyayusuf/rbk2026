@@ -1,6 +1,9 @@
 ============================================================
-TEMPLATE CODING SINGKAT - GSE JOGJA STYLE
+TEMPLATE CODING SINGKAT - Rabiku
 ============================================================
+
+MENGAMBIL KONSEP DARI PONYTAIL DI GITHUB karya 
+DietrichGebert
 
 Prinsip: 
 - Kode harus singkat, padat, dan jelas

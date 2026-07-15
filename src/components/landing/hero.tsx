@@ -32,32 +32,22 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
-  // Render skeleton saat mounting untuk prevent hydration mismatch
   if (!mounted) {
     return (
       <section className="min-h-screen flex items-center justify-center bg-white pt-16 md:pt-20">
         <div className="container-custom">
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-            {/* Badge Skeleton */}
-            <div className="mb-4 h-8 w-48 bg-gray-200 rounded-full animate-pulse" />
-
-            {/* Heading Skeleton */}
-            <div className="h-16 w-full max-w-2xl bg-gray-200 rounded-lg animate-pulse" />
-
-            {/* Subtitle Skeleton */}
-            <div className="mt-4 h-6 w-full max-w-xl bg-gray-200 rounded-lg animate-pulse" />
-
-            {/* CTA Buttons Skeleton */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <div className="h-12 w-40 bg-gray-200 rounded-lg animate-pulse" />
-              <div className="h-12 w-40 bg-gray-200 rounded-lg animate-pulse" />
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-4">
+            <div className="h-10 w-64 bg-gray-200 rounded-lg animate-pulse" />
+            <div className="h-8 w-full max-w-2xl bg-gray-200 rounded-lg animate-pulse" />
+            <div className="h-6 w-full max-w-xl bg-gray-200 rounded-lg animate-pulse" />
+            <div className="flex gap-4">
+              <div className="h-12 w-40 bg-gray-200 rounded-xl animate-pulse" />
+              <div className="h-12 w-40 bg-gray-200 rounded-xl animate-pulse" />
             </div>
-
-            {/* Stats Skeleton */}
-            <div className="mt-12 grid grid-cols-3 gap-8 w-full max-w-md">
-              <div className="h-16 bg-gray-200 rounded-lg animate-pulse" />
-              <div className="h-16 bg-gray-200 rounded-lg animate-pulse" />
-              <div className="h-16 bg-gray-200 rounded-lg animate-pulse" />
+            <div className="grid grid-cols-3 gap-8 w-full max-w-md">
+              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
+              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
+              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
             </div>
           </div>
         </div>
@@ -69,25 +59,15 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center bg-white pt-16 md:pt-20">
       <div className="container-custom">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          {/* Badge */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="mb-4 inline-flex items-center gap-2 px-4 py-2 bg-rabiku-blue/10 text-rabiku-blue rounded-full text-sm font-medium"
-          >
-            #1 Website Pernikahan Digital
-          </motion.div>
-
           {/* Heading */}
           <motion.h1
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-rabiku-blue leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
           >
-            Buat Website Pernikahan{" "}
-            <span className="text-rabiku-blue-dark">Impianmu</span>
+            Buat Undangan Digital Impianmu dengan{" "}
+            <span className="text-rabiku-blue">Sentuhan Elegan</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -95,20 +75,21 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fadeInUpDelayed}
-            className="mt-4 text-lg md:text-xl text-rabiku-blue/80 max-w-2xl"
+            className="mt-4 text-sm md:text-base text-rabiku-blue/80 max-w-2xl leading-relaxed"
           >
-            Undangan digital modern dengan 5 tema warna, galeri foto, musik,
-            dan RSVP. Mudah diedit kapan saja!
+            Pilih dari puluhan tema eksklusif, tambahkan foto, RSVP dan nikmati
+            revisi sepuasnya. Wujudkan pernikahan impian dengan cara yang lebih
+            modern dan bermakna.
           </motion.p>
 
-          {/* CTA Buttons - PAKE SIZE YANG SAMA */}
+          {/* CTA Buttons */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUpDelayed}
             className="mt-8 flex flex-col sm:flex-row gap-4"
           >
-            <Button variant="primary" size="xl">
+            <Button variant="primary" size="lg">
               Lihat Tema
             </Button>
             <Button variant="outline" size="xl">
@@ -125,19 +106,19 @@ export default function Hero() {
           >
             <div>
               <p className="text-2xl font-bold text-rabiku-blue">50+</p>
-              <p className="text-sm text-rabiku-blue/70 font-medium">
+              <p className="text-xs text-rabiku-blue/60 font-medium">
                 Website Terbuat
               </p>
             </div>
             <div>
               <p className="text-2xl font-bold text-rabiku-blue">5</p>
-              <p className="text-sm text-rabiku-blue/70 font-medium">
+              <p className="text-xs text-rabiku-blue/60 font-medium">
                 Tema Warna
               </p>
             </div>
             <div>
               <p className="text-2xl font-bold text-rabiku-blue">100%</p>
-              <p className="text-sm text-rabiku-blue/70 font-medium">
+              <p className="text-xs text-rabiku-blue/60 font-medium">
                 Kepuasan
               </p>
             </div>

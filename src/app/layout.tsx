@@ -4,7 +4,7 @@
    ============================================ */
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 /* ============================================
@@ -16,6 +16,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+});
+
 /* ============================================
    METADATA CONFIGURATION
    ============================================ */
@@ -24,8 +30,7 @@ export const metadata: Metadata = {
   title: "Rabiku.com - Website Pernikahan Digital",
   description:
     "Buat website pernikahan impianmu dengan mudah. Tersedia 5 tema warna, galeri foto, musik, dan RSVP.",
-  keywords:
-    "website pernikahan, undangan digital, wedding website, rabiku",
+  keywords: "website pernikahan, undangan digital, wedding website, rabiku",
   openGraph: {
     title: "Rabiku.com - Website Pernikahan Digital",
     description: "Buat website pernikahan impianmu dengan mudah.",
@@ -61,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} ${playfair.variable} antialiased`}
         suppressHydrationWarning
       >
         {children}

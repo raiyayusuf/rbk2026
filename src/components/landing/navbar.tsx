@@ -5,10 +5,11 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, LogIn } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#themes", label: "Tema" },
@@ -17,7 +18,13 @@ const navLinks = [
   { href: "#faq", label: "FAQ" },
 ];
 
-const NavButton = ({ children, mobile = false }: { children: React.ReactNode; mobile?: boolean }) => (
+const NavButton = ({
+  children,
+  mobile = false,
+}: {
+  children: React.ReactNode;
+  mobile?: boolean;
+}) => (
   <button
     className={`
       inline-flex items-center justify-center gap-2.5
@@ -35,76 +42,158 @@ const NavButton = ({ children, mobile = false }: { children: React.ReactNode; mo
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("#themes");
+
+  // Lock scroll when menu open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
-            <Image
-              src="/logo/logo-rabiku-text-color.png"
-              alt="Rabiku.com"
-              width={160}
-              height={45}
-              className="h-9 w-auto object-contain"
-              priority
-            />
-          </Link>
+    <>
+      {/* Overlay Blur - LEBIH LAMBAT */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center justify-center gap-10 flex-1">
-            {navLinks.map(({ href, label }) => (
-              <Link key={href} href={href} className="text-rabiku-blue/70 hover:text-rabiku-blue transition-colors font-medium text-base">
-                {label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Desktop Login */}
-          <div className="hidden md:flex items-center shrink-0">
-            <Link href="/login">
-              <NavButton>
-                <LogIn size={18} className="shrink-0" />
-                <span>Login</span>
-              </NavButton>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center shrink-0">
+              <Image
+                src="/logo/logo-rabiku-text-color.png"
+                alt="Rabiku.com"
+                width={160}
+                height={45}
+                className="h-9 w-auto object-contain"
+                priority
+              />
             </Link>
-          </div>
 
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden p-2 text-rabiku-blue hover:text-rabiku-blue-dark transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center justify-center gap-10 flex-1">
+              {navLinks.map(({ href, label }) => {
+                const isActive = activeLink === href;
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setActiveLink(href)}
+                    className={`
+                      relative text-base font-medium transition-all duration-200
+                      ${isActive ? "text-rabiku-blue" : "text-gray-400 hover:text-rabiku-blue"}
+                    `}
+                  >
+                    {label}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-rabiku-blue rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="container-custom py-4 space-y-3">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="block text-rabiku-blue/70 hover:text-rabiku-blue transition-colors font-medium text-base py-2.5"
-                onClick={() => setIsOpen(false)}
+            {/* Desktop Login */}
+            <div className="hidden md:flex items-center shrink-0">
+              <Link href="/login">
+                <NavButton>
+                  <LogIn size={18} className="shrink-0" />
+                  <span>Masuk</span>
+                </NavButton>
+              </Link>
+            </div>
+
+            {/* Mobile: Login + Toggle */}
+            <div className="flex items-center gap-3 md:hidden">
+              {/* Mobile Login Button */}
+              <Link href="/login" className="shrink-0">
+                <button className="inline-flex items-center justify-center gap-1.5 px-4 py-2 border-2 border-rabiku-blue text-rabiku-blue bg-white hover:bg-rabiku-blue hover:text-white hover:border-rabiku-blue rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-rabiku-blue/50 focus:ring-offset-2 shadow-md hover:shadow-rabiku-blue/25 cursor-pointer min-h-10">
+                  <LogIn size={16} className="shrink-0" />
+                  <span>Masuk</span>
+                </button>
+              </Link>
+
+              {/* Toggle Button with Animation - LEBIH LAMBAT */}
+              <button
+                className="relative p-2 text-rabiku-blue hover:text-rabiku-blue-dark transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
               >
-                {label}
-              </Link>
-            ))}
-            <Link href="/login" onClick={() => setIsOpen(false)}>
-              <NavButton mobile>
-                <LogIn size={20} className="shrink-0" />
-                <span>Login</span>
-              </NavButton>
-            </Link>
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: isOpen ? 90 : 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="flex items-center justify-center"
+                >
+                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </motion.div>
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Menu with Animation - LEBIH LAMBAT */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -30, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -30, height: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="md:hidden bg-white border-t border-gray-100 shadow-lg overflow-hidden relative z-50"
+            >
+              <div className="container-custom py-4 space-y-2.5">
+                {navLinks.map(({ href, label }, index) => {
+                  const isActive = activeLink === href;
+                  return (
+                    <motion.div
+                      key={href}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.1 + index * 0.08,
+                        ease: "easeOut",
+                      }}
+                    >
+                      <Link
+                        href={href}
+                        onClick={() => {
+                          setActiveLink(href);
+                          setIsOpen(false);
+                        }}
+                        className={`
+                          block text-base font-medium py-2.5 transition-colors
+                          ${isActive ? "text-rabiku-blue" : "text-gray-400 hover:text-rabiku-blue"}
+                        `}
+                      >
+                        {label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </>
   );
 }
