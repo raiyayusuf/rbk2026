@@ -68,28 +68,33 @@ export default function ThemeCard({
         </h3>
         <p className="text-base font-semibold text-rabiku-pink">{price}</p>
 
-        {/* Actions */}
+        {/* Actions - GAP ANTAR BUTTON TETAP 2 */}
         <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 text-xs"
+            className="flex-1 text-xs gap-1"
             onClick={onView}
           >
-            <Eye size={14} />
-            <span>Lihat</span>
+            <Eye size={16} />
+            <span>Detail</span>
           </Button>
           <Button
             variant="primary"
             size="sm"
-            className="flex-1 text-xs"
+            className="flex-1 text-xs gap-1"
             onClick={onOrder}
           >
-            <ShoppingCart size={14} />
+            <ShoppingCart size={16} />
             <span>Pesan</span>
           </Button>
-          <Button variant="ghost" size="sm" className="px-3" onClick={onShare}>
-            <Share2 size={14} />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="px-3 gap-1"
+            onClick={onShare}
+          >
+            <Share2 size={18} />
           </Button>
         </div>
       </div>

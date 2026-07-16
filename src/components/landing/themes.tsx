@@ -11,11 +11,17 @@ import { themes, temaFilters, warnaOptions } from "@/constants/themes";
 import ThemeCard from "@/components/ui/theme-card";
 import Dropdown from "@/components/ui/dropdown";
 
+/* ============================================
+   ANIMATION VARIANTS
+   ============================================ */
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+/* ============================================
+   THEMES SECTION
+   ============================================ */
 export default function Themes() {
   const [activeTema, setActiveTema] = useState("all");
   const [activeWarna, setActiveWarna] = useState("all");
@@ -42,16 +48,18 @@ export default function Themes() {
           variants={fadeInUp}
           className="text-center max-w-2xl mx-auto mb-10"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
-            Katalog Tema Terbaik
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            Temukan Desain yang Menceritakan{" "}
+            <span className="text-rabiku-blue">Kisah</span>{" "}
+            <span className="text-rabiku-pink">Cintamu</span>
           </h2>
-          <p className="text-base text-gray-500">
-            Pilih desain yang paling mencerminkan kisah cinta Anda. Semua tema
-            mendukung kustomisasi foto, warna, dan lagu pengiring.
+          <p className="mt-4 text-base text-rabiku-blue/80 max-w-2xl mx-auto">
+            Setiap pasangan punya cerita unik. Pilih tema yang paling mewakili
+            perjalanan cinta kalian.
           </p>
         </motion.div>
 
-        {/* Filter Container - 1 BOX PANJANG */}
+        {/* Filter Container */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8 p-4 bg-gray-50/80 rounded-2xl border border-gray-100">
           {temaFilters.map((filter) => {
             const isActive = activeTema === filter.value;
@@ -128,6 +136,7 @@ export default function Themes() {
           </motion.div>
         </AnimatePresence>
 
+        {/* Empty State */}
         {filteredThemes.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500">Tidak ada tema untuk filter ini.</p>

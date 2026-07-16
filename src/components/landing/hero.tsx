@@ -67,7 +67,8 @@ export default function Hero() {
             className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
           >
             Buat Undangan Digital Impianmu dengan{" "}
-            <span className="text-rabiku-blue">Sentuhan Elegan</span>
+            <span className="text-rabiku-blue">Sentuhan</span>{" "}
+            <span className="text-rabiku-pink">Elegan</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -82,7 +83,7 @@ export default function Hero() {
             modern dan bermakna.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - KEMBALI KE BIRU */}
           <motion.div
             initial="hidden"
             animate="visible"
