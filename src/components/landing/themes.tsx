@@ -104,7 +104,7 @@ export default function Themes() {
           />
         </div>
 
-        {/* Grid */}
+        {/* Grid - Mobile 2 kolom, Desktop 4 kolom */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeTema}-${activeWarna}`}
@@ -112,7 +112,7 @@ export default function Themes() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {filteredThemes.map((theme, index) => (
               <motion.div

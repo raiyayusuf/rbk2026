@@ -83,17 +83,17 @@ export default function Hero() {
             modern dan bermakna.
           </motion.p>
 
-          {/* CTA Buttons - KEMBALI KE BIRU */}
+          {/* CTA Buttons - Mobile: 2 kolom, Desktop: row */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUpDelayed}
-            className="mt-8 flex flex-col sm:flex-row gap-4"
+            className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-4 w-full max-w-xs mx-auto"
           >
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="md" className="w-full text-sm sm:text-base">
               Lihat Tema
             </Button>
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="md" className="w-full text-sm sm:text-base">
               Hubungi Kami
             </Button>
           </motion.div>

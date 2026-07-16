@@ -6,6 +6,7 @@
 import Navbar from "@/components/landing/navbar";
 import Hero from "@/components/landing/hero";
 import Themes from "@/components/landing/themes";
+import WhatsAppButton from "@/components/ui/whatsapp-button";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <Themes />
+      <WhatsAppButton />
     </main>
   );
 }

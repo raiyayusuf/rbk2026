@@ -40,14 +40,14 @@ const variants = {
 };
 
 /* ============================================
-   BUTTON SIZES
+   BUTTON SIZES - PADDING DIKECILIN
    ============================================ */
 const sizes = {
   xs: "px-3 py-1 text-xs rounded-md font-medium min-h-[30px]",
-  sm: "px-5 py-2 text-sm rounded-lg font-medium min-h-[38px]",
-  md: "px-7 py-2.5 text-base rounded-xl font-semibold min-h-[46px]",
-  lg: "px-9 py-3 text-lg rounded-xl font-semibold min-h-[54px]",
-  xl: "px-12 py-4 text-xl rounded-2xl font-bold min-h-[54px]",
+  sm: "px-4 py-2 text-sm rounded-lg font-medium min-h-[38px]",
+  md: "px-5 py-2.5 text-base rounded-xl font-semibold min-h-[46px]",
+  lg: "px-7 py-3 text-lg rounded-xl font-semibold min-h-[54px]",
+  xl: "px-9 py-4 text-xl rounded-2xl font-bold min-h-[54px]",
 };
 
 /* ============================================
