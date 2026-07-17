@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { themes, temaFilters, warnaOptions } from "@/constants/themes";
 import ThemeCard from "@/components/ui/theme-card";
 import Dropdown from "@/components/ui/dropdown";
+import FilterMobile from "@/components/ui/filter-mobile";
 
 /* ============================================
    ANIMATION VARIANTS
@@ -46,65 +47,84 @@ export default function Themes() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="text-center max-w-2xl mx-auto mb-6 md:mb-10"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-gray-900 leading-tight">
             Temukan Desain yang Menceritakan{" "}
             <span className="text-rabiku-blue">Kisah</span>{" "}
             <span className="text-rabiku-pink">Cintamu</span>
           </h2>
-          <p className="mt-4 text-base text-rabiku-blue/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-md text-rabiku-blue/80 max-w-2xl mx-auto">
             Setiap pasangan punya cerita unik. Pilih tema yang paling mewakili
             perjalanan cinta kalian.
           </p>
         </motion.div>
 
-        {/* Filter Container */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8 p-4 bg-gray-50/80 rounded-2xl border border-gray-100">
-          {temaFilters.map((filter) => {
-            const isActive = activeTema === filter.value;
-            return (
-              <motion.button
-                key={filter.value}
-                onClick={() => setActiveTema(filter.value)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`
-                  px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300
-                  ${
-                    isActive
-                      ? "bg-white text-rabiku-blue shadow-md ring-2 ring-rabiku-blue/20"
-                      : "text-gray-500 hover:text-gray-700 hover:bg-white/50"
-                  }
-                `}
-              >
-                {filter.label}
-                <span
+        {/* Filter Container - Desktop (STICKY) */}
+        <div className="hidden md:block sticky top-22 z-30 -mx-4 px-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 p-4 bg-gray-50/90 rounded-2xl border border-gray-100">
+            {temaFilters.map((filter) => {
+              const isActive = activeTema === filter.value;
+              return (
+                <motion.button
+                  key={filter.value}
+                  onClick={() => setActiveTema(filter.value)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   className={`
-                    ml-1.5 px-2 py-0.5 text-xs rounded-full transition-all duration-300
+                    px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300
                     ${
                       isActive
-                        ? "bg-rabiku-blue/10 text-rabiku-blue"
-                        : "bg-gray-200 text-gray-400"
+                        ? "bg-white text-rabiku-blue shadow-md ring-2 ring-rabiku-blue/20"
+                        : "text-gray-500 hover:text-gray-700 hover:bg-white/50"
                     }
                   `}
                 >
-                  {getTemaCount(filter.value)}
-                </span>
-              </motion.button>
-            );
-          })}
+                  {filter.label}
+                  <span
+                    className={`
+                      ml-1.5 px-2 py-0.5 text-xs rounded-full transition-all duration-300
+                      ${
+                        isActive
+                          ? "bg-rabiku-blue/10 text-rabiku-blue"
+                          : "bg-gray-200 text-gray-400"
+                      }
+                    `}
+                  >
+                    {getTemaCount(filter.value)}
+                  </span>
+                </motion.button>
+              );
+            })}
 
-          {/* Dropdown */}
-          <Dropdown
-            label="Semua Warna"
-            options={warnaOptions}
-            value={activeWarna}
-            onChange={setActiveWarna}
+            <Dropdown
+              label="Semua Warna"
+              options={warnaOptions}
+              value={activeWarna}
+              onChange={setActiveWarna}
+            />
+          </div>
+        </div>
+
+        {/* Spacer biar konten ga ketutupan filter */}
+        <div className="hidden md:block h-4" />
+
+        {/* Filter - Mobile (Sticky) */}
+        <div className="md:hidden sticky top-16 z-30 pt-2 pb-3 -mx-4 px-4">
+          <FilterMobile
+            temaOptions={temaFilters}
+            warnaOptions={warnaOptions}
+            activeTema={activeTema}
+            activeWarna={activeWarna}
+            onTemaChange={setActiveTema}
+            onWarnaChange={setActiveWarna}
+            onApply={() => {}}
+            onCancel={() => {}}
+            getTemaCount={getTemaCount}
           />
         </div>
 
-        {/* Grid - Mobile 2 kolom, Desktop 4 kolom */}
+        {/* Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeTema}-${activeWarna}`}
@@ -112,7 +132,7 @@ export default function Themes() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {filteredThemes.map((theme, index) => (
               <motion.div

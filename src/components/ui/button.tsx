@@ -40,7 +40,7 @@ const variants = {
 };
 
 /* ============================================
-   BUTTON SIZES - PADDING DIKECILIN
+   BUTTON SIZES
    ============================================ */
 const sizes = {
   xs: "px-3 py-1 text-xs rounded-md font-medium min-h-[30px]",
@@ -70,7 +70,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(
           "inline-flex items-center justify-center gap-2.5",
-          "focus:outline-none focus:ring-2 focus:ring-rabiku-blue/50 focus:ring-offset-2",
+          "focus:outline-none",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           "transition-all duration-200 ease-in-out",
           "active:scale-[0.98]",

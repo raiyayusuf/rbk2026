@@ -53,7 +53,7 @@ export default function Dropdown({
         <span>{selectedLabel}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <ChevronDown size={16} />
         </motion.div>
@@ -62,20 +62,20 @@ export default function Dropdown({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, height: 0 }}
+            initial={{ opacity: 0, y: -30, height: 0 }}
             animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            exit={{ opacity: 0, y: -30, height: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             className="absolute top-full left-0 mt-2 min-w-45 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 overflow-hidden"
           >
             {options.map((opt, index) => (
               <motion.button
                 key={opt.value}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.3,
-                  delay: index * 0.05,
+                  duration: 0.4,
+                  delay: 0.1 + index * 0.08,
                   ease: "easeOut",
                 }}
                 onClick={() => {

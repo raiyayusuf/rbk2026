@@ -6,8 +6,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import Button from "@/components/ui/button";
 
 /* ============================================
    ANIMATION VARIANTS
@@ -34,20 +34,16 @@ export default function Hero() {
 
   if (!mounted) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-white pt-16 md:pt-20">
+      <section className="min-h-screen flex items-center bg-white pt-24 md:pt-20">
         <div className="container-custom">
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-4">
-            <div className="h-10 w-64 bg-gray-200 rounded-lg animate-pulse" />
-            <div className="h-8 w-full max-w-2xl bg-gray-200 rounded-lg animate-pulse" />
-            <div className="h-6 w-full max-w-xl bg-gray-200 rounded-lg animate-pulse" />
-            <div className="flex gap-4">
-              <div className="h-12 w-40 bg-gray-200 rounded-xl animate-pulse" />
-              <div className="h-12 w-40 bg-gray-200 rounded-xl animate-pulse" />
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1 space-y-4">
+              <div className="h-10 w-48 bg-gray-200 rounded-lg animate-pulse" />
+              <div className="h-8 w-full max-w-xl bg-gray-200 rounded-lg animate-pulse" />
+              <div className="h-6 w-full max-w-lg bg-gray-200 rounded-lg animate-pulse" />
             </div>
-            <div className="grid grid-cols-3 gap-8 w-full max-w-md">
-              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
-              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
-              <div className="h-16 bg-gray-200 rounded-xl animate-pulse" />
+            <div className="flex-1 flex items-center justify-center gap-4">
+              <div className="w-48 h-64 bg-gray-200 rounded-2xl animate-pulse" />
             </div>
           </div>
         </div>
@@ -56,72 +52,72 @@ export default function Hero() {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white pt-16 md:pt-20">
+    <section className="min-h-screen flex items-center bg-white pt-24 md:pt-20">
       <div className="container-custom">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          {/* Heading */}
-          <motion.h1
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          {/* Left Side - Text Content */}
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+            className="flex-1 text-center md:text-left"
           >
-            Buat Undangan Digital Impianmu dengan{" "}
-            <span className="text-rabiku-blue">Sentuhan</span>{" "}
-            <span className="text-rabiku-pink">Elegan</span>
-          </motion.h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              Buat Undangan Digital Impianmu dengan{" "}
+              <span className="text-rabiku-blue">Sentuhan</span>{" "}
+              <span className="text-rabiku-pink">Elegan</span>
+            </h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUpDelayed}
-            className="mt-4 text-sm md:text-base text-rabiku-blue/80 max-w-2xl leading-relaxed"
-          >
-            Pilih dari puluhan tema eksklusif, tambahkan foto, RSVP dan nikmati
-            revisi sepuasnya. Wujudkan pernikahan impian dengan cara yang lebih
-            modern dan bermakna.
-          </motion.p>
-
-          {/* CTA Buttons - Mobile: 2 kolom, Desktop: row */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUpDelayed}
-            className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-4 w-full max-w-xs mx-auto"
-          >
-            <Button variant="primary" size="md" className="w-full text-sm sm:text-base">
-              Lihat Tema
-            </Button>
-            <Button variant="outline" size="md" className="w-full text-sm sm:text-base">
-              Hubungi Kami
-            </Button>
+            <motion.p
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUpDelayed}
+              className="mt-4 text-sm md:text-base text-rabiku-blue/80 max-w-2xl leading-relaxed md:mx-0 mx-auto"
+            >
+              Pilih dari puluhan tema eksklusif, tambahkan foto, RSVP dan
+              nikmati revisi sepuasnya. Wujudkan pernikahan impian dengan cara
+              yang lebih modern dan bermakna.
+            </motion.p>
           </motion.div>
 
-          {/* Stats */}
+          {/* Right Side - Image (Hanya 1 di mobile, 3 di desktop) */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUpDelayed}
-            className="mt-12 grid grid-cols-3 gap-8 w-full max-w-md"
+            className="flex-1 flex items-center justify-center"
           >
-            <div>
-              <p className="text-2xl font-bold text-rabiku-blue">50+</p>
-              <p className="text-xs text-rabiku-blue/60 font-medium">
-                Website Terbuat
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-rabiku-blue">5</p>
-              <p className="text-xs text-rabiku-blue/60 font-medium">
-                Tema Warna
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-rabiku-blue">100%</p>
-              <p className="text-xs text-rabiku-blue/60 font-medium">
-                Kepuasan
-              </p>
+            {/* Main Image - Mobile: 1 gambar, Desktop: 3 gambar */}
+            <div className="flex items-center justify-center gap-7">
+              {/* Main Image */}
+              <div className="relative w-72 md:w-80 h-88 md:h-96 rounded-2xl overflow-hidden shadow-lg shrink-0">
+                <Image
+                  src="/dummy-image/image-dummy-potrait.png"
+                  alt="Wedding Theme"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Side Images - Hanya muncul di desktop */}
+              <div className="hidden md:flex flex-col gap-7">
+                <div className="relative w-56 md:w-64 h-72 md:h-80 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/dummy-image/image-dummy-potrait.png"
+                    alt="Wedding Theme"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative w-56 md:w-64 h-72 md:h-80 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/dummy-image/image-dummy-potrait.png"
+                    alt="Wedding Theme"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

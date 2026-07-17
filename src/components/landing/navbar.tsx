@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#themes", label: "Tema" },
-  { href: "#about", label: "Tentang" },
+  { href: "#benefits", label: "Tentang" },
   { href: "#testimonials", label: "Testimonial" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -42,7 +42,7 @@ const NavButton = ({
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("#themes");
+  const [activeLink, setActiveLink] = useState("");
 
   // Lock scroll when menu open
   useEffect(() => {
@@ -56,9 +56,43 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // ============================================
+  // SCROLL SPY - DETECT ACTIVE SECTION
+  // ============================================
+  useEffect(() => {
+    setTimeout(() => {
+      const sections = document.querySelectorAll("section[id]");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          let hasActiveSection = false;
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              if (id && id !== "hero") {
+                setActiveLink(`#${id}`);
+                hasActiveSection = true;
+              }
+            }
+          });
+
+          if (!hasActiveSection) {
+            setActiveLink("");
+          }
+        },
+        { threshold: 0.1, rootMargin: "-60px 0px -60px 0px" },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+
+      return () => observer.disconnect();
+    }, 100);
+  }, []);
+
   return (
     <>
-      {/* Overlay Blur - LEBIH LAMBAT */}
+      {/* Overlay - Blur + Gelap */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -66,13 +100,14 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
         )}
       </AnimatePresence>
 
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
+      {/* Navbar - Transparan + Blur */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-white/10">
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
@@ -90,7 +125,7 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center justify-center gap-10 flex-1">
               {navLinks.map(({ href, label }) => {
-                const isActive = activeLink === href;
+                const isActive = activeLink === href && activeLink !== "";
                 return (
                   <Link
                     key={href}
@@ -120,17 +155,17 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile: Login + Toggle */}
-            <div className="flex items-center gap-3 md:hidden">
-              {/* Mobile Login Button */}
+            {/* Mobile: Login Icon + Hamburger */}
+            <div className="flex items-center gap-1 md:hidden">
               <Link href="/login" className="shrink-0">
-                <button className="inline-flex items-center justify-center gap-1.5 px-4 py-2 border-2 border-rabiku-blue text-rabiku-blue bg-white hover:bg-rabiku-blue hover:text-white hover:border-rabiku-blue rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-rabiku-blue/50 focus:ring-offset-2 shadow-md hover:shadow-rabiku-blue/25 cursor-pointer min-h-10">
-                  <LogIn size={16} className="shrink-0" />
-                  <span>Masuk</span>
+                <button
+                  className="p-2 text-rabiku-blue hover:text-rabiku-blue-dark transition-colors"
+                  aria-label="Login"
+                >
+                  <LogIn size={24} />
                 </button>
               </Link>
 
-              {/* Toggle Button with Animation - LEBIH LAMBAT */}
               <button
                 className="relative p-2 text-rabiku-blue hover:text-rabiku-blue-dark transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
@@ -149,7 +184,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu with Animation - LEBIH LAMBAT */}
+        {/* Mobile Menu - Putih solid */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -161,7 +196,7 @@ export default function Navbar() {
             >
               <div className="container-custom py-4 space-y-2.5">
                 {navLinks.map(({ href, label }, index) => {
-                  const isActive = activeLink === href;
+                  const isActive = activeLink === href && activeLink !== "";
                   return (
                     <motion.div
                       key={href}
