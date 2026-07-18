@@ -9,6 +9,7 @@ import Themes from "@/components/landing/themes";
 import Benefits from "@/components/landing/benefits";
 import Testimonials from "@/components/landing/testimonials";
 import FAQ from "@/components/landing/faq";
+import Footer from "@/components/landing/footer";
 import WhatsAppButton from "@/components/ui/whatsapp-button";
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Benefits />
       <Testimonials />
       <FAQ />
+      <Footer />
       <WhatsAppButton />
     </main>
   );

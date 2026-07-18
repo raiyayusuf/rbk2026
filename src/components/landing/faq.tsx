@@ -45,9 +45,8 @@ export default function FAQ() {
             variants={fadeInUp}
             className="lg:col-span-2"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              Frequently Asked{" "}
-              <span className="text-rabiku-blue">Questions</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-rabiku-blue leading-tight">
+              Frequently Asked Questions
             </h2>
             <p className="mt-3 text-base text-gray-500">
               Temukan jawaban atas pertanyaan yang paling sering ditanyakan
