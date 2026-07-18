@@ -1,0 +1,117 @@
+RANGKUMAN LENGKAP PROJECT RABIKU.COM (rbk2026)
+18 Juli 2026
+
+1. STATUS TERAKHIR:
+Menyelesaikan halaman Review (Kirim Review) dengan form lengkap yang terintegrasi dengan Flowbite Datepicker. Form ini berisi field: Nama Pengantin Wanita, Nama Pengantin Pria, Rating Bintang, Tanggal Pernikahan (inline datepicker), Testimonial, Upload Foto (drag & drop), dan Preview Foto. Layout menggunakan 3 kolom untuk input dan 2 kolom untuk tanggal/testimonial dengan gap 0 (nempel).
+
+2. YANG UDAH SELESAI:
+✅ Landing page dengan Hero, Themes, Benefits, Testimonials, FAQ, Footer, dan WhatsApp floating button
+✅ Navbar dengan transparan + blur, scroll spy, dan mobile menu animasi
+✅ Themes section dengan filter (desktop & mobile), grid 4 kolom, dan theme card
+✅ Benefits section dengan 5 keunggulan (responsive: horizontal di mobile, vertikal di desktop)
+✅ Testimonials section dengan pagination, star rating, dan testimonial card
+✅ FAQ section dengan accordion dan CTA Hubungi Kami
+✅ Footer dengan background Rabiku Blue, social media icons, dan auto message WhatsApp
+✅ Review page dengan form lengkap (Flowbite Datepicker, drag & drop upload, lightbox preview)
+✅ Global styling dengan Tailwind v4, Rabiku Blue & Pink colors
+✅ Responsive design untuk semua section (mobile, tablet, desktop)
+
+3. YANG BELUM SELESAI:
+🔜 Backend API untuk menyimpan data review
+🔜 Dashboard Admin untuk kelola review
+🔜 Halaman website wedding customer (10 section)
+🔜 Sistem login (Super Admin & Admin)
+🔜 Upload gambar ke Cloudinary
+🔜 Database dengan Prisma + Neon
+🔜 Halaman login & dashboard admin
+
+4. KEPUTUSAN PENTING YANG UDAH DISEPAKATI:
+- Domain: rabiku.com (bukan .id karena .id udah dipake orang lain)
+- Nama repo: rbk2026 (RaBiKu 2026)
+- Brand color: #1659A0 (Rabiku Blue) dengan variasi opacity
+- 3 Role: Super Admin, Admin, User
+- 1 Admin = 1 Website (One-to-One)
+- Tema ditentukan oleh Super Admin (customer tidak bisa ganti sendiri)
+- 5 tema warna (Coklat, Biru, Pink, Hijau, Ungu) dengan 32 tema unik
+- 10 section website wedding (Hero, Quote, Couple, Countdown, Schedule, Gallery, Gifts, RSVP, Thanks)
+- Inline editing untuk admin (klik langsung edit)
+- Harga: Rp 80.000 (sekali bayar, akses selamanya)
+- Upload gambar ke Cloudinary, URL disimpan di database
+- Navbar transparan + blur dengan scroll spy
+- Filter mobile: sticky dengan bottom sheet
+
+5. TECH STACK:
+- Framework: Next.js 16 (App Router)
+- Bahasa: TypeScript
+- Styling: Tailwind CSS v4
+- Database: Neon (PostgreSQL)
+- ORM: Prisma
+- Auth: NextAuth
+- Storage: Cloudinary
+- Hosting: Vercel
+- Animasi: Framer Motion
+- UI Components: Lucide React, Flowbite React (Datepicker)
+
+6. STRUKTUR FOLDER:
+- src/app/ - Halaman & API routes
+- src/app/review/ - Halaman review (form + thank-you)
+- src/components/landing/ - Landing page components
+- src/components/ui/ - Reusable UI components
+- src/constants/ - Data constants (faq, testimonials, themes)
+- src/lib/ - Utilities & config
+- src/types/ - TypeScript types
+- src/utils/ - Helper functions
+- prisma/ - Database schema
+- public/ - Static assets
+
+7. BRAND COLOR:
+- Primary: #1659A0 (Rabiku Blue)
+- Secondary: #FD6572 (Rabiku Pink)
+- Background: #FFFFFF
+- Text: #1A1A1A
+- Variasi: Opacity (5%, 10%, 20%, 40%, 60%, 80%, 100%)
+- Tailwind: bg-rabiku-blue/10, text-rabiku-blue/60, dst
+
+8. HALAMAN YANG UDAH DIBUAT:
+✅ Landing page (/) - Hero, Themes, Benefits, Testimonials, FAQ, Footer
+✅ Review page (/review) - Form review dengan datepicker, upload foto, dan preview
+✅ Thank you page (/review/thank-you) - Halaman sukses setelah kirim review
+
+9. FILE/FOLDER PENTING YANG UDAH ADA:
+- src/app/page.tsx (landing page)
+- src/app/review/page.tsx (review form)
+- src/app/review/thank-you/page.tsx (thank you)
+- src/components/landing/hero.tsx
+- src/components/landing/navbar.tsx
+- src/components/landing/themes.tsx
+- src/components/landing/benefits.tsx
+- src/components/landing/testimonials.tsx
+- src/components/landing/faq.tsx
+- src/components/landing/footer.tsx
+- src/components/ui/button.tsx
+- src/components/ui/theme-card.tsx
+- src/components/ui/testimonial-card.tsx
+- src/components/ui/filter-mobile.tsx
+- src/components/ui/faq-item.tsx
+- src/components/ui/dropdown.tsx
+- src/components/ui/modal-review.tsx
+- src/components/ui/whatsapp-button.tsx
+- src/constants/themes.ts
+- src/constants/testimonials.ts
+- src/constants/faq.ts
+- tailwind.config.ts
+- next.config.ts
+- package.json
+
+10. PERTANYAAN YANG BELUM TERJAWAB:
+- Bagaimana cara implementasi backend untuk menyimpan data review?
+- Bagaimana cara setup Cloudinary untuk upload gambar?
+- Bagaimana cara setup NextAuth untuk login?
+
+11. YANG PERLU DILANJUTKAN:
+- Setup Neon database dan Prisma migration
+- Setup Cloudinary untuk upload gambar
+- Implementasi API endpoint untuk review (POST /api/reviews)
+- Dashboard Admin untuk melihat data review
+- Halaman login (Super Admin & Admin)
+- Halaman website wedding customer (10 section)

@@ -54,7 +54,7 @@ export default function FAQ() {
             </p>
 
             {/* CTA - Hubungi Kami (di bawah judul) */}
-            <p className="mt-4 text-sm text-gray-500 font-semibold">
+            <p className="mt-4 text-md text-gray-500 font-semibold">
               Masih memiliki pertanyaan lain?{" "}
               <Link
                 href={whatsappUrl}

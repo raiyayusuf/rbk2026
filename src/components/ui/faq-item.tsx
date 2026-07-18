@@ -28,7 +28,7 @@ export default function FAQItem({
         onClick={onToggle}
         className="flex items-center justify-between w-full py-4 text-left transition-colors hover:text-rabiku-blue"
       >
-        <span className="text-sm font-medium text-gray-800 pr-4">
+        <span className="text-md font-medium text-gray-800 pr-4">
           {question}
         </span>
         <ChevronDown
@@ -48,7 +48,7 @@ export default function FAQItem({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="pb-4 text-sm text-gray-500 leading-relaxed">
+            <p className="pb-4 text-md text-gray-500 leading-relaxed">
               {answer}
             </p>
           </motion.div>
