@@ -87,7 +87,6 @@ export default function Hero() {
             variants={fadeInUpDelayed}
             className="flex-1 flex items-center justify-center"
           >
-            {/* Main Image - Mobile: 1 gambar, Desktop: 3 gambar */}
             <div className="flex items-center justify-center gap-7">
               {/* Main Image */}
               <div className="relative w-72 md:w-80 h-88 md:h-96 rounded-2xl overflow-hidden shadow-lg shrink-0">
@@ -95,6 +94,8 @@ export default function Hero() {
                   src="/dummy-image/image-dummy-potrait.png"
                   alt="Wedding Theme"
                   fill
+                  loading="eager"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -106,6 +107,7 @@ export default function Hero() {
                     src="/dummy-image/image-dummy-potrait.png"
                     alt="Wedding Theme"
                     fill
+                    sizes="(max-width: 1024px) 25vw, 20vw"
                     className="object-cover"
                   />
                 </div>
@@ -114,6 +116,7 @@ export default function Hero() {
                     src="/dummy-image/image-dummy-potrait.png"
                     alt="Wedding Theme"
                     fill
+                    sizes="(max-width: 1024px) 25vw, 20vw"
                     className="object-cover"
                   />
                 </div>

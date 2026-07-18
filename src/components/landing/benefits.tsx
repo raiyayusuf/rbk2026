@@ -14,7 +14,7 @@ import { Palette, Music, Camera, Smartphone, Heart } from "lucide-react";
 const benefits = [
   {
     icon: Palette,
-    title: "5 Tema Eksklusif",
+    title: "Tema Eksklusif",
     description:
       "Pilih dari 5 tema warna elegan yang bisa disesuaikan dengan gaya pernikahanmu.",
   },
@@ -97,7 +97,7 @@ export default function Benefits() {
             <span className="text-rabiku-blue">ku</span>
           </h2>
           <p className="mt-3 text-base text-gray-500">
-            Setiap detail dirancang untuk momen bahagiamu
+            Setiap detail undangan dirancang untuk momen bahagiamu
           </p>
         </motion.div>
 
