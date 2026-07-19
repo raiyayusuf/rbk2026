@@ -14,16 +14,40 @@ import FAQItem from "@/components/ui/faq-item";
 /* ============================================
    ANIMATION VARIANTS
    ============================================ */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" as const },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemFadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
 };
 
 /* ============================================
    FAQ SECTION
    ============================================ */
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -37,12 +61,12 @@ export default function FAQ() {
     <section className="section-padding bg-white" id="faq">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Left Side - Title & CTA */}
+          {/* Left Side - Title & CTA (Masuk dari KIRI) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInLeft}
             className="lg:col-span-2"
           >
             <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-rabiku-blue leading-tight">
@@ -70,23 +94,24 @@ export default function FAQ() {
             </p>
           </motion.div>
 
-          {/* Right Side - FAQ List */}
+          {/* Right Side - FAQ List (Masuk dari KANAN dengan STAGGER) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
             className="lg:col-span-3"
           >
             <div className="bg-gray-50/80 rounded-2xl p-4 sm:p-6 border border-gray-100">
               {faqs.map((faq, index) => (
-                <FAQItem
-                  key={faq.id}
-                  question={faq.question}
-                  answer={faq.answer}
-                  isOpen={openIndex === index}
-                  onToggle={() => toggleFAQ(index)}
-                />
+                <motion.div key={faq.id} variants={itemFadeInRight}>
+                  <FAQItem
+                    question={faq.question}
+                    answer={faq.answer}
+                    isOpen={openIndex === index}
+                    onToggle={() => toggleFAQ(index)}
+                  />
+                </motion.div>
               ))}
             </div>
           </motion.div>

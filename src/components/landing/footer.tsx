@@ -84,7 +84,7 @@ export default function Footer() {
       <div className="container-custom">
         {/* Top Section - Brand Left, Links Right */}
         <div className="py-12 md:py-16 flex flex-col lg:flex-row gap-8 lg:gap-16">
-          {/* Brand Column - Kiri (lebih lebar) */}
+          {/* Brand Column - Kiri */}
           <div className="lg:w-5/12">
             <Link href="/" className="inline-block mb-4">
               <Image
@@ -100,113 +100,115 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Right Columns - Mepet ke kanan */}
-          <div className="lg:w-7/12 flex flex-col sm:flex-row justify-end gap-8 md:gap-12">
-            {/* Links Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                Tautan
-              </h3>
-              <ul className="space-y-2.5">
-                {footerData.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/70 hover:text-white transition-colors duration-200"
+          {/* Right Columns - 3 kolom, di desktop pake lg:ml-auto biar ke kanan */}
+          <div className="lg:w-7/12 lg:ml-auto">
+            <div className="grid grid-cols-3 gap-4 w-full lg:flex lg:justify-end lg:gap-8 md:gap-12">
+              {/* Tautan */}
+              <div>
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+                  Tautan
+                </h3>
+                <ul className="space-y-2.5">
+                  {footerData.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-white/70 hover:text-white transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Kontak */}
+              <div>
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+                  Kontak
+                </h3>
+                <ul className="space-y-2.5">
+                  <li>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
                     >
-                      {link.label}
-                    </Link>
+                      <WhatsAppIcon />
+                      <span>WhatsApp</span>
+                    </a>
                   </li>
-                ))}
-              </ul>
-            </div>
+                  <li>
+                    <a
+                      href={`https://www.linkedin.com/in/${footerData.social.linkedin}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <LinkedInIcon />
+                      <span>LinkedIn</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`mailto:${footerData.contact.email}`}
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <Mail size={18} />
+                      <span>Email</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            {/* Contact Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                Kontak
-              </h3>
-              <ul className="space-y-2.5">
-                <li>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <WhatsAppIcon />
-                    <span>WhatsApp</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`https://www.linkedin.com/in/${footerData.social.linkedin}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <LinkedInIcon />
-                    <span>LinkedIn</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`mailto:${footerData.contact.email}`}
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <Mail size={18} />
-                    <span>{footerData.contact.email}</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Social Media Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                Sosial Media
-              </h3>
-              <ul className="space-y-2.5">
-                <li>
-                  <a
-                    href={`https://instagram.com/${footerData.social.instagram}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <InstagramIcon />
-                    <span>Instagram</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={footerData.social.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <YouTubeIcon />
-                    <span>YouTube</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={footerData.social.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <Image
-                      src="/logo/tiktok/tiktok-svgrepo-com.svg"
-                      alt="TikTok"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 opacity-70 brightness-0 invert"
-                    />
-                    <span>TikTok</span>
-                  </a>
-                </li>
-              </ul>
+              {/* Sosial Media */}
+              <div>
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+                  Sosial Media
+                </h3>
+                <ul className="space-y-2.5">
+                  <li>
+                    <a
+                      href={`https://instagram.com/${footerData.social.instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <InstagramIcon />
+                      <span>Instagram</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={footerData.social.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <YouTubeIcon />
+                      <span>YouTube</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={footerData.social.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <Image
+                        src="/logo/tiktok/tiktok-svgrepo-com.svg"
+                        alt="TikTok"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 opacity-70 brightness-0 invert"
+                      />
+                      <span>TikTok</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

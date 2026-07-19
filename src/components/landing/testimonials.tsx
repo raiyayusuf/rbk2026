@@ -85,13 +85,13 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        {/* Grid */}
+        {/* Grid - 2 kolom di mobile, 4 kolom di desktop */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
         >
           {currentTestimonials.map((testimonial, index) => (
             <motion.div
