@@ -45,7 +45,7 @@ export default function TestimonialCard({
   return (
     <div className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1 h-full flex flex-col">
       {/* Image - Full Portrait */}
-      <div className="relative aspect-2/3 bg-gray-100 overflow-hidden shrink-0">
+      <div className="relative aspect-3/4 bg-gray-100 overflow-hidden shrink-0">
         <Image
           src={image}
           alt={name}

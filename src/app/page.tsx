@@ -17,10 +17,27 @@ export default function HomePage() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
-      <Themes />
-      <Benefits />
-      <Testimonials />
-      <FAQ />
+
+      {/* Section Themes */}
+      <section id="themes" className="scroll-mt-20 md:scroll-mt-24">
+        <Themes />
+      </section>
+
+      {/* Section Benefits (Tentang) */}
+      <section id="benefits" className="scroll-mt-20 md:scroll-mt-24">
+        <Benefits />
+      </section>
+
+      {/* Section Testimonials */}
+      <section id="testimonials" className="scroll-mt-20 md:scroll-mt-24">
+        <Testimonials />
+      </section>
+
+      {/* Section FAQ */}
+      <section id="faq" className="scroll-mt-20 md:scroll-mt-24">
+        <FAQ />
+      </section>
+
       <Footer />
       <WhatsAppButton />
     </main>

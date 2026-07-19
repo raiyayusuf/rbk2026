@@ -45,12 +45,14 @@ export default function FAQ() {
             variants={fadeInUp}
             className="lg:col-span-2"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-rabiku-blue leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-rabiku-blue leading-tight">
               Frequently Asked Questions
             </h2>
             <p className="mt-3 text-base text-gray-500">
               Temukan jawaban atas pertanyaan yang paling sering ditanyakan
-              tentang layanan Rabiku.
+              tentang layanan{" "}
+              <span className="text-rabiku-pink font-semibold">Rabi</span>
+              <span className="text-rabiku-blue font-semibold">ku</span>
             </p>
 
             {/* CTA - Hubungi Kami (di bawah judul) */}
@@ -62,8 +64,8 @@ export default function FAQ() {
                 rel="noopener noreferrer"
                 className="inline-block font-semibold transition-opacity duration-200 hover:opacity-70"
               >
-                <span className="text-rabiku-blue">Hubungi</span>{" "}
-                <span className="text-rabiku-pink">Kami</span>
+                <span className="text-rabiku-pink">Hubungi</span>{" "}
+                <span className="text-rabiku-blue">Kami</span>
               </Link>
             </p>
           </motion.div>

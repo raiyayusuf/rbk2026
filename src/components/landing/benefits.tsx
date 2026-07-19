@@ -6,10 +6,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Palette, Music, Camera, Smartphone, Heart } from "lucide-react";
+import {
+  Palette,
+  Images,
+  MessageSquareHeart,
+  Music,
+  CalendarClock,
+  UsersRound,
+  WalletMinimal,
+  MapPinHouse,
+  Smartphone,
+  PencilSparkles,
+} from "lucide-react";
 
 /* ============================================
-   BENEFITS DATA
+   BENEFITS DATA 
    ============================================ */
 const benefits = [
   {
@@ -19,16 +30,46 @@ const benefits = [
       "Pilih dari 5 tema warna elegan yang bisa disesuaikan dengan gaya pernikahanmu.",
   },
   {
+    icon: Images,
+    title: "Gallery Foto",
+    description:
+      "Share momen indahmu dengan pasangan melalui slideshow yang keren dan elegan.",
+  },
+  {
+    icon: MessageSquareHeart,
+    title: "Story Cinta",
+    description:
+      "Ceritakan perjalanan cinta kalian dengan timeline interaktif yang romantis dan berkesan.",
+  },
+  {
     icon: Music,
     title: "Musik Pengiring",
     description:
       "Tambahkan lagu favoritmu untuk menemani tamu saat membuka undangan digital.",
   },
   {
-    icon: Camera,
-    title: "Galeri Foto Lengkap",
+    icon: CalendarClock,
+    title: "Hitungan Mundur",
     description:
-      "Unggah foto-foto kenangan dan bagikan momen bahagia dengan orang tercinta.",
+      "Jangan sampai terlewatkan momen indahmu, hitung mundur tanggal acara pernikahanmu.",
+  },
+  {
+    icon: UsersRound,
+    title: "Bagikan dengan Nama Tamu",
+    description:
+      "Buat link undangan dengan nama tamu agar lebih eksklusif dan personal.",
+  },
+  {
+    icon: WalletMinimal,
+    title: "Amplop Digital",
+    description:
+      "Tamu undangan bisa mengirim amplop secara digital dengan mudah dan praktis.",
+  },
+  {
+    icon: MapPinHouse,
+    title: "Navigasi Lokasi",
+    description:
+      "All in one navigasi lengkap, agar para tamu tidak tersesat saat ke tempatmu.",
   },
   {
     icon: Smartphone,
@@ -37,7 +78,7 @@ const benefits = [
       "Tampilan website yang indah di semua perangkat, dari HP hingga desktop.",
   },
   {
-    icon: Heart,
+    icon: PencilSparkles,
     title: "Mudah Diedit",
     description:
       "Kustomisasi konten dengan mudah kapan saja, tanpa perlu keahlian coding.",
@@ -61,7 +102,7 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
       delayChildren: 0.2,
     },
   },

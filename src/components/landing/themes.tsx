@@ -54,7 +54,7 @@ export default function Themes() {
             <span className="text-rabiku-blue">Kisah</span>{" "}
             <span className="text-rabiku-pink">Cintamu</span>
           </h2>
-          <p className="mt-4 text-md text-rabiku-blue/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-md text-gray-500 max-w-2xl mx-auto">
             Setiap pasangan punya cerita unik. Pilih tema yang paling mewakili
             perjalanan cinta kalian.
           </p>

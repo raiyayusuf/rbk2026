@@ -58,36 +58,148 @@ export default function Navbar() {
 
   // ============================================
   // SCROLL SPY - DETECT ACTIVE SECTION
+  // LOGIKA: 2 INTERSECTION OBSERVER
+  // 1. Exit Observer: deteksi section yang UDAH GA KELIATAN
+  // 2. Enter Observer: deteksi section yang MULAI KELIATAN
   // ============================================
   useEffect(() => {
-    setTimeout(() => {
+    const setupObservers = () => {
       const sections = document.querySelectorAll("section[id]");
+      if (sections.length === 0) {
+        setTimeout(setupObservers, 500);
+        return;
+      }
 
-      const observer = new IntersectionObserver(
+      // Helper: cari section sebelumnya
+      const getPrevSectionId = (id: string): string | null => {
+        const currentIndex = navLinks.findIndex(
+          (link) => link.href === `#${id}`,
+        );
+        if (currentIndex > 0) {
+          return navLinks[currentIndex - 1].href.replace("#", "");
+        }
+        return null;
+      };
+
+      // Helper: cari section berikutnya
+      const getNextSectionId = (id: string): string | null => {
+        const currentIndex = navLinks.findIndex(
+          (link) => link.href === `#${id}`,
+        );
+        if (currentIndex < navLinks.length - 1) {
+          return navLinks[currentIndex + 1].href.replace("#", "");
+        }
+        return null;
+      };
+
+      // Helper: cek apakah element keliatan di viewport
+      const isElementVisible = (el: Element): boolean => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+        return (
+          rect.top < windowHeight &&
+          rect.bottom > 0 &&
+          rect.left < windowWidth &&
+          rect.right > 0
+        );
+      };
+
+      // ============================================
+      // OBSERVER 1: DETEKSI SECTION YANG UDAH GA KELIATAN
+      // ============================================
+      const exitObserver = new IntersectionObserver(
         (entries) => {
-          let hasActiveSection = false;
-
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const id = entry.target.id;
-              if (id && id !== "hero") {
-                setActiveLink(`#${id}`);
-                hasActiveSection = true;
+            const id = entry.target.id;
+            if (id === "hero") return;
+
+            // Kalo section ini UDAH GA KELIATAN
+            if (!entry.isIntersecting) {
+              const nextSectionId = getNextSectionId(id);
+              if (nextSectionId) {
+                const nextEl = document.querySelector(`#${nextSectionId}`);
+                if (nextEl && isElementVisible(nextEl)) {
+                  // Section berikutnya KELIATAN → aktif!
+                  setActiveLink(`#${nextSectionId}`);
+                }
               }
             }
           });
-
-          if (!hasActiveSection) {
-            setActiveLink("");
-          }
         },
-        { threshold: 0.1, rootMargin: "-60px 0px -60px 0px" },
+        { threshold: 0.1 }, // 0 = pas ilang
       );
 
-      sections.forEach((section) => observer.observe(section));
+      // ============================================
+      // OBSERVER 2: DETEKSI SECTION YANG MULAI KELIATAN
+      // ============================================
+      const enterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const id = entry.target.id;
+            if (id === "hero") return;
 
-      return () => observer.disconnect();
-    }, 100);
+            // Kalo section ini MULAI KELIATAN
+            if (entry.isIntersecting) {
+              const prevSectionId = getPrevSectionId(id);
+              if (prevSectionId) {
+                const prevEl = document.querySelector(`#${prevSectionId}`);
+                if (prevEl && !isElementVisible(prevEl)) {
+                  // Section sebelumnya UDAH GA KELIATAN → aktif!
+                  setActiveLink(`#${id}`);
+                }
+              } else {
+                // Kalo ga ada previous section (Tema), langsung aktif
+                setActiveLink(`#${id}`);
+              }
+            }
+          });
+        },
+        { threshold: 0.05 }, // 5% keliatan = mulai muncul
+      );
+
+      // Observe semua section
+      sections.forEach((section) => {
+        exitObserver.observe(section);
+        enterObserver.observe(section);
+      });
+
+      // ============================================
+      // FALLBACK: SET ACTIVE AWAL
+      // ============================================
+      const setInitialActive = () => {
+        const sections = document.querySelectorAll("section[id]");
+        for (const section of sections) {
+          const id = section.id;
+          if (id === "hero") continue;
+          if (isElementVisible(section)) {
+            const prevSectionId = getPrevSectionId(id);
+            if (prevSectionId) {
+              const prevEl = document.querySelector(`#${prevSectionId}`);
+              if (prevEl && !isElementVisible(prevEl)) {
+                setActiveLink(`#${id}`);
+                return;
+              }
+            } else {
+              setActiveLink(`#${id}`);
+              return;
+            }
+          }
+        }
+      };
+
+      // Jalankan fallback
+      const initialCheck = setTimeout(setInitialActive, 200);
+
+      return () => {
+        exitObserver.disconnect();
+        enterObserver.disconnect();
+        clearTimeout(initialCheck);
+      };
+    };
+
+    const timer = setTimeout(setupObservers, 300);
+    return () => clearTimeout(timer);
   }, []);
 
   return (

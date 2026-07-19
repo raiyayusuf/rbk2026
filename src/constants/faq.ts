@@ -38,7 +38,7 @@ export const faqs: FAQItem[] = [
     id: 5,
     question: "Apakah ada pilihan tema yang beragam?",
     answer:
-      "Ya, kami menyediakan 32 tema dengan 5 kategori (Islamic, Modern, Minimalis, Mewah, Rustic). Setiap tema bisa disesuaikan dengan warna dan gaya pernikahan Anda.",
+      "Ya, kami menyediakan puluhan tema dengan 5 kategori (Islamic, Modern, Minimalis, Mewah, Rustic). Setiap tema bisa disesuaikan dengan warna dan gaya pernikahan Anda.",
   },
   {
     id: 6,
@@ -57,5 +57,11 @@ export const faqs: FAQItem[] = [
     question: "Apakah ada support jika saya kesulitan?",
     answer:
       "Tentu! Kami menyediakan support via WhatsApp untuk membantu Anda mengedit website, mengganti tema, atau jika ada kendala teknis lainnya.",
+  },
+  {
+    id: 9,
+    question: "Apakah harus mengunduh aplikasi khusus?",
+    answer:
+      "Tidak perlu. Website pernikahan Anda berbentuk tautan yang bisa dibuka langsung melalui browser (Chrome, Safari, atau lainnya) di semua perangkat smartphone maupun komputer.",
   },
 ];

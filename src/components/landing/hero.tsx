@@ -72,7 +72,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeInUpDelayed}
-              className="mt-4 text-sm md:text-base text-rabiku-blue/80 max-w-2xl leading-relaxed md:mx-0 mx-auto"
+              className="mt-4 text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed md:mx-0 mx-auto"
             >
               Pilih dari puluhan tema eksklusif, tambahkan foto, RSVP dan
               nikmati revisi sepuasnya. Wujudkan pernikahan impian dengan cara

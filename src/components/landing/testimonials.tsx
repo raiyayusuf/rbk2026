@@ -24,7 +24,7 @@ const fadeInUp = {
    ============================================ */
 export default function Testimonials() {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
   const totalPages = Math.ceil(testimonials.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -72,12 +72,16 @@ export default function Testimonials() {
           variants={fadeInUp}
           className="text-center max-w-2xl mx-auto mb-10"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Apa Kata <span className="text-rabiku-pink">Mereka</span>
-            <span className="text-rabiku-blue">?</span>
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-gray-900 leading-tight">
+            <span className="text-rabiku-pink">Cerita </span>
+            <span className="text-rabiku-blue">Bahagia </span>
+            dari Mereka
           </h2>
           <p className="mt-3 text-base text-gray-500">
-            Pengalaman dari pasangan yang sudah menggunakan Rabiku
+            Pengalaman pasangan yang sudah menggunakan{" "}
+            <span className="text-rabiku-pink font-semibold">Rabi</span>
+            <span className="text-rabiku-blue font-semibold">ku </span>
+            untuk momen spesial mereka
           </p>
         </motion.div>
 
