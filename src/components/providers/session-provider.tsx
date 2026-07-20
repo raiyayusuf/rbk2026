@@ -1,0 +1,16 @@
+/* ============================================
+   src/components/providers/session-provider.tsx
+   SESSION PROVIDER - RABIKU.COM
+   ============================================ */
+
+"use client";
+
+import { SessionProvider as NextAuthSessionProvider } from "next-auth/react";
+
+export function SessionProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <NextAuthSessionProvider>
+      {children}
+    </NextAuthSessionProvider>
+  );
+}
