@@ -5,8 +5,10 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { Star, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface TestimonialCardProps {
   name: string;
@@ -25,6 +27,18 @@ export default function TestimonialCard({
   text,
   image,
 }: TestimonialCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   /* ============================================
      FORMAT COUPLE NAME - WANITA PINK, PRIA BLUE
      ============================================ */
@@ -42,6 +56,10 @@ export default function TestimonialCard({
     return <span>{couple}</span>;
   };
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1 h-full flex flex-col">
       {/* Image - Full Portrait */}
@@ -56,12 +74,22 @@ export default function TestimonialCard({
         />
 
         {/* Box putih mengambang */}
-        <div className="absolute bottom-3 left-3 right-3 p-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-md">
-          {/* Name & Stars - Sejajar */}
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-gray-900">
-              dari {formatCoupleName(couple)}
-            </h3>
+        <div 
+          className={`absolute bottom-3 left-3 right-3 p-4 backdrop-blur-md rounded-xl shadow-md transition-all duration-300 max-h-[90%] overflow-hidden flex flex-col ${
+            isMobile ? 'bg-white/60 cursor-pointer hover:bg-white/40' : 'bg-white/50 cursor-pointer hover:bg-white/85'
+          }`}
+          onClick={toggleExpand}
+        >
+          {/* Nama - Fixed */}
+          <h3 className="text-sm font-semibold text-gray-900 shrink-0">
+            dari {formatCoupleName(couple)}
+          </h3>
+
+          {/* Tanggal - Fixed */}
+          <p className="text-xs text-gray-400 mt-0.5 shrink-0">{date}</p>
+
+          {/* Bintang + Icon - Fixed */}
+          <div className="flex items-center justify-between mt-1.5 shrink-0">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -75,15 +103,41 @@ export default function TestimonialCard({
                 />
               ))}
             </div>
+
+            {/* Toggle Icon - Muncul di semua device */}
+            <button
+              className="text-rabiku-blue hover:text-rabiku-blue-dark transition-colors p-1 shrink-0 pointer-events-none"
+              aria-label={isExpanded ? "Sembunyikan testimonial" : "Tampilkan testimonial"}
+            >
+              {isExpanded ? (
+                <ChevronUp size={20} />
+              ) : (
+                <ChevronDown size={20} />
+              )}
+            </button>
           </div>
 
-          {/* Date */}
-          <p className="text-xs text-gray-400 mt-0.5">{date}</p>
-
-          {/* Testimonial Text */}
-          <p className="text-xs text-gray-600 leading-relaxed mt-1.5 line-clamp-4">
-            {text}
-          </p>
+          {/* Testimonial Text - Expandable, TANPA SCROLL BAR */}
+          <div className="mt-2 flex-1 min-h-0">
+            <AnimatePresence mode="wait">
+              {isExpanded ? (
+                <motion.div
+                  key="expanded"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden h-full"
+                >
+                  <div className="h-full overflow-y-auto max-h-30 md:max-h-40 scrollbar-hide">
+                    <p className="text-xs text-gray-600 leading-relaxed pt-2 border-t border-gray-100/70">
+                      {text}
+                    </p>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>

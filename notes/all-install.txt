@@ -8,3 +8,5 @@ npm install react-hot-toast sonner
 npm install framer-motion
 npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
 npm install lucide-react
+npm install flowbite-react
+npm install flowbite

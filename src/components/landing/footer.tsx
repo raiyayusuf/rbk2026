@@ -155,7 +155,7 @@ export default function Footer() {
                       href={`mailto:${footerData.contact.email}`}
                       className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2"
                     >
-                      <Mail size={18} />
+                      <Mail size={22} />
                       <span>Email</span>
                     </a>
                   </li>
