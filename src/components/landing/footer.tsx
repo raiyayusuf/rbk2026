@@ -218,7 +218,7 @@ export default function Footer() {
           <p className="text-sm text-white">
             &copy; {currentYear} Rabiku.com | All rights reserved.
           </p>
-          <p className="text-xs text-white flex items-center gap-1.5">
+          <p className="text-sm text-white flex items-center gap-1.5">
             Made with
             <Heart size={14} className="text-white fill-white" />
             by Raiya Yusuf Priatmojo

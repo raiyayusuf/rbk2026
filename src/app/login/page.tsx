@@ -5,19 +5,40 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Lock, Mail, LogIn, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // ✅ PAKE useEffect UNTUK REDIRECT
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      if (session.user.role === "SUPER_ADMIN") {
+        router.push("/super-admin");
+      } else {
+        router.push("/dashboard");
+      }
+    }
+  }, [status, session, router]);
+
+  // Kalo udah login, tampilkan loading biar ga flash
+  if (status === "authenticated") {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-rabiku-blue/20 border-t-rabiku-blue rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +58,7 @@ export default function LoginPage() {
         return;
       }
 
-      // Redirect akan dihandle middleware
-      router.push("/");
+      // Redirect akan dihandle oleh useEffect
       router.refresh();
     } catch {
       setError("Terjadi kesalahan. Silakan coba lagi.");

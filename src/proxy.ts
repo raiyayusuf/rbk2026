@@ -8,12 +8,17 @@ import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // ✅ EXCLUDE API AUTH ROUTE
+  if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
+
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
-
-  const { pathname } = request.nextUrl;
 
   // Public routes (ga perlu login)
   const publicRoutes = [
@@ -33,7 +38,7 @@ export async function proxy(request: NextRequest) {
     (route) => pathname === route || pathname.startsWith("/_next") || pathname.startsWith("/logo")
   );
 
-  // Kalo udah login dan ke /login → redirect ke dashboard masing-masing
+  // Kalo udah login dan ke /login → redirect
   if (token && pathname === "/login") {
     if (token.role === "SUPER_ADMIN") {
       return NextResponse.redirect(new URL("/super-admin", request.url));
