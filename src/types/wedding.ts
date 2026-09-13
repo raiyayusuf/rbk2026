@@ -25,7 +25,6 @@ export interface WeddingData {
   venueAddress: string;
   coverImage: string;
   quote: string;
-  quoteSource: string;
   loveStory: string;
   galleryImages: string[];
   eventSchedule: { time: string; title: string; description: string }[];
@@ -54,7 +53,6 @@ export const dummyWedding: WeddingData = {
   coverImage: "/dummy-image/image-dummy-potrait.png",
   quote:
     "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",
-  quoteSource: "Q.S. Ar-Rum: 21",
   loveStory:
     "Kami bertemu di bangku kuliah, tumbuh bersama, dan memutuskan untuk melangkah bersama selamanya.",
   galleryImages: [

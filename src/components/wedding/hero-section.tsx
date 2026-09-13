@@ -24,82 +24,102 @@ export default function HeroSection({ data }: HeroSectionProps) {
     coverImage,
   } = data;
 
-  // Format tanggal
-  const formattedDate = new Date(weddingDate).toLocaleDateString("id-ID", {
-    weekday: "long",
-    day: "numeric",
+  const dateObj = new Date(weddingDate);
+  const dayName = dateObj.toLocaleDateString("id-ID", { weekday: "long" });
+  const dayNumber = dateObj.toLocaleDateString("id-ID", { day: "numeric" });
+  const monthYear = dateObj.toLocaleDateString("id-ID", {
     month: "long",
     year: "numeric",
   });
 
   return (
-    <section className="relative w-full min-h-screen bg-[#FDF0F2] flex flex-col items-center justify-center px-6 py-16 overflow-hidden">
-      {/* Ornamen Background */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-0 w-40 h-40 bg-[#F5D5D9] rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-0 w-40 h-40 bg-[#F5D5D9] rounded-full blur-3xl" />
-      </div>
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
+      <Image
+        src="/themes/angelicgrace/Angelicgrace-2.png"
+        alt="Hero Background"
+        fill
+        className="object-cover object-center"
+        priority
+      />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-white/20" />
 
       {/* Konten */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-sm">
-        {/* Foto Full */}
+      <div className="relative z-10 w-full max-w-107.5 px-6 py-12 flex flex-col items-center">
+        {/* Frame Foto - Arch */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative mb-6"
+        >
+          <div className="w-56 h-80 md:w-64 md:h-90 rounded-t-full rounded-b-3xl overflow-hidden border-4 border-[#D4AF7A] shadow-2xl">
+            <Image
+              src={coverImage}
+              alt={`${groomName} & ${brideName}`}
+              width={256}
+              height={360}
+              className="object-cover w-full h-full"
+              priority
+            />
+          </div>
+        </motion.div>
+
+        {/* Box Putih - Nama & Tanggal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full aspect-3/4 rounded-2xl overflow-hidden shadow-xl mb-8 border-4 border-white"
-        >
-          <Image
-            src={coverImage}
-            alt={`${groomName} & ${brideName}`}
-            width={400}
-            height={533}
-            className="object-cover w-full h-full"
-            priority
-          />
-        </motion.div>
-
-        {/* Nama */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mb-4"
+          className="w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 text-center border-t-4 border-[#F5A876]"
         >
+          {/* Label */}
+          <p
+            className="text-[9px] tracking-[0.4em] text-[#D4AF7A] font-medium mb-3"
+            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+          >
+            PERAYAAN PERNIKAHAN
+          </p>
+
+          {/* Nama Pengantin */}
           <h1
-            className="text-4xl text-[#D4838F] leading-tight"
+            className="text-4xl md:text-5xl text-[#D4838F] leading-tight mb-1"
             style={{ fontFamily: "Great Vibes, cursive" }}
           >
-            {groomName} & {brideName}
+            {groomName} &
           </h1>
-        </motion.div>
+          <h1
+            className="text-4xl md:text-5xl text-[#D4838F] leading-tight mb-4"
+            style={{ fontFamily: "Great Vibes, cursive" }}
+          >
+            {brideName}
+          </h1>
 
-        {/* Tanggal */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-[11px] tracking-[0.3em] text-[#5C3A3F] font-medium mb-2 text-center"
-          style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
-        >
-          {formattedDate.toUpperCase()}
-        </motion.p>
+          {/* Ornamen */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-10 h-px bg-[#D4AF7A]/50" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF7A]" />
+            <div className="w-10 h-px bg-[#D4AF7A]/50" />
+          </div>
 
-        {/* Venue */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-center mb-8"
-        >
+          {/* Tanggal */}
           <p
-            className="text-sm font-semibold text-[#5C3A3F]"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            className="text-[11px] tracking-[0.3em] text-[#5C3A3F] font-semibold mb-2"
+            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+          >
+            {dayName.toUpperCase()}, {dayNumber} {monthYear.toUpperCase()}
+          </p>
+
+          {/* Venue */}
+          <p
+            className="text-xs font-bold text-[#5C3A3F] uppercase mb-0.5"
+            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
           >
             {venueName}
           </p>
           <p
-            className="text-xs text-[#5C3A3F]/70 mt-1"
+            className="text-[10px] text-[#5C3A3F]/70"
             style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
           >
             {venueAddress}
@@ -110,8 +130,8 @@ export default function HeroSection({ data }: HeroSectionProps) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col items-center gap-2 text-[#D4AF7A]"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="flex flex-col items-center gap-2 mt-6 text-[#D4AF7A]"
         >
           <span
             className="text-[9px] tracking-[0.3em] font-medium"
