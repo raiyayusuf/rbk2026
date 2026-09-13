@@ -10,3 +10,4 @@ npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
 npm install lucide-react
 npm install flowbite-react
 npm install flowbite
+npm install cloudinary

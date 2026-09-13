@@ -1,5 +1,5 @@
 /* ============================================
-   src/constants/wedding-themes.ts
+   src/constants/wedding-themes.tsx
    THEME CONFIG PER WEDDING - RABIKU.COM
    ============================================ */
 
@@ -22,6 +22,11 @@ export interface WeddingThemeConfig {
     border: string;
     bg1: string;
     bg2: string;
+  };
+  song?: {
+    title: string;
+    artist: string;
+    url: string;
   };
 }
 
@@ -52,6 +57,11 @@ export const weddingThemes: Record<string, WeddingThemeConfig> = {
       bg1: "#FDF8F8",
       bg2: "#FDF0F2",
     },
+    song: {
+      title: "Perfect",
+      artist: "Ed Sheeran",
+      url: "https://res.cloudinary.com/ditaequtc/video/upload/v1789316963/Angelicgrace_edvtsx.mp3",
+    },
   },
 
   // ============================================
@@ -70,12 +80,17 @@ export const weddingThemes: Record<string, WeddingThemeConfig> = {
       bg4: "/themes/Auroraromance/Auroraromance-4.png",
     },
     colors: {
-      gold: "#C9A96B", // Gold soft
-      pink: "#C48B9F", // Pink dusty (dari bunga)
-      brown: "#2C3E50", // Navy tua (teks)
-      border: "#8FA8C8", // Biru soft (border)
-      bg1: "#F5F8FC", // Biru sangat muda (input bg)
-      bg2: "#E8EEF5", // Biru soft (highlight)
+      gold: "#C9A96B",
+      pink: "#C48B9F",
+      brown: "#2C3E50",
+      border: "#8FA8C8",
+      bg1: "#F5F8FC",
+      bg2: "#E8EEF5",
+    },
+    song: {
+      title: "A Thousand Years",
+      artist: "Christina Perri",
+      url: "https://res.cloudinary.com/ditaequtc/video/upload/v1789316965/Auroraromance_bzmldk.mp3",
     },
   },
 };

@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import WeddingFrame from "@/components/wedding/wedding-frame";
 import CoverPage from "@/components/wedding/cover-page";
+import MusicPlayer from "@/components/wedding/music-player";
 import HeroSection from "@/components/wedding/hero-section";
 import QuoteSection from "@/components/wedding/quote-section";
 import BrideSection from "@/components/wedding/bride-section";
@@ -63,6 +64,8 @@ export default function WeddingPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
+          <MusicPlayer theme={theme} autoPlay={isOpen} />
+
           <WeddingFrame>
             <HeroSection data={data} theme={theme} />
             <QuoteSection data={data} theme={theme} />

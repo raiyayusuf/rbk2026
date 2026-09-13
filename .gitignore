@@ -1,6 +1,10 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ============================================
+# GITIGNORE - RABIKU.COM
+# ============================================
 
-# dependencies
+# ============================================
+# DEPENDENCIES
+# ============================================
 /node_modules
 /.pnp
 .pnp.*
@@ -10,34 +14,97 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
+# ============================================
+# TESTING
+# ============================================
 /coverage
 
-# next.js
+# ============================================
+# NEXT.JS
+# ============================================
 /.next/
 /out/
-
-# production
 /build
 
-# misc
+# ============================================
+# PRODUCTION
+# ============================================
+/dist
+*.tsbuildinfo
+next-env.d.ts
+
+# ============================================
+# ENV FILES (JANGAN DI-COMMIT!)
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# ============================================
+# VERCEL
+# ============================================
+.vercel
+
+# ============================================
+# PRISMA
+# ============================================
+/src/generated/prisma
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations/dev.db*
+
+# ============================================
+# MISC
+# ============================================
 .DS_Store
 *.pem
+Thumbs.db
+*.log
 
-# debug
+# ============================================
+# DEBUG
+# ============================================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ============================================
+# IDE / EDITOR
+# ============================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
 
-# vercel
-.vercel
+# ============================================
+# OS
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ============================================
+# CLOUDINARY / UPLOADS (KALO ADA)
+# ============================================
+/public/uploads/
+/public/songs/*.mp3
+!/public/songs/.gitkeep
 
-/src/generated/prisma
+# ============================================
+# TEMP
+# ============================================
+*.tmp
+*.temp
+tmp/
+temp/
