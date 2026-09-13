@@ -3,13 +3,21 @@
    DATA TEMA RABIKU.COM
    ============================================ */
 
-export const themes = [
-  /* ============================================
-   ISLAMIC THEME (7 Tema)
-   ============================================ */
+export interface Theme {
+  id: number;
+  title: string;
+  slug: string | null;
+  price: string;
+  tema: string;
+  warna: string;
+  image: string;
+}
+
+export const themes: Theme[] = [
   {
     id: 1,
     title: "Angelicgrace",
+    slug: "elvano-azelia",
     price: "Rp 80.000",
     tema: "islamic",
     warna: "coklat",
@@ -18,6 +26,7 @@ export const themes = [
   {
     id: 2,
     title: "Auroraromance",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "biru",
@@ -26,6 +35,7 @@ export const themes = [
   {
     id: 3,
     title: "Aventianlovestory",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "pink",
@@ -34,6 +44,7 @@ export const themes = [
   {
     id: 4,
     title: "Mysticdusk",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "ungu",
@@ -42,6 +53,7 @@ export const themes = [
   {
     id: 5,
     title: "Celestialvow",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "hijau",
@@ -50,6 +62,7 @@ export const themes = [
   {
     id: 6,
     title: "Nurani",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "coklat",
@@ -58,18 +71,16 @@ export const themes = [
   {
     id: 7,
     title: "Rahma",
+    slug: null,
     price: "Rp 80.000",
     tema: "islamic",
     warna: "biru",
     image: "/dummy-image/image-dummy-potrait.png",
   },
-
-  /* ============================================
-   MODERN THEME (7 Tema)
-   ============================================ */
   {
     id: 8,
     title: "Dreamycoastalarch",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "hijau",
@@ -78,6 +89,7 @@ export const themes = [
   {
     id: 9,
     title: "Velvetmoonlight",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "ungu",
@@ -86,6 +98,7 @@ export const themes = [
   {
     id: 10,
     title: "Rusticcharm",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "coklat",
@@ -94,6 +107,7 @@ export const themes = [
   {
     id: 11,
     title: "Urbanbliss",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "biru",
@@ -102,6 +116,7 @@ export const themes = [
   {
     id: 12,
     title: "Minimaluxe",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "pink",
@@ -110,6 +125,7 @@ export const themes = [
   {
     id: 13,
     title: "Monochromatica",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "hijau",
@@ -118,18 +134,16 @@ export const themes = [
   {
     id: 14,
     title: "Futuristicvow",
+    slug: null,
     price: "Rp 80.000",
     tema: "modern",
     warna: "ungu",
     image: "/dummy-image/image-dummy-potrait.png",
   },
-
-  /* ============================================
-   MINIMALIS THEME (6 Tema)
-   ============================================ */
   {
     id: 15,
     title: "Sereneblossom",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "biru",
@@ -138,6 +152,7 @@ export const themes = [
   {
     id: 16,
     title: "Whisperingsoul",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "pink",
@@ -146,6 +161,7 @@ export const themes = [
   {
     id: 17,
     title: "Pristinewhite",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "coklat",
@@ -154,6 +170,7 @@ export const themes = [
   {
     id: 18,
     title: "Softaura",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "hijau",
@@ -162,6 +179,7 @@ export const themes = [
   {
     id: 19,
     title: "Cleanslate",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "ungu",
@@ -170,18 +188,16 @@ export const themes = [
   {
     id: 20,
     title: "Barebeauty",
+    slug: null,
     price: "Rp 80.000",
     tema: "minimalis",
     warna: "biru",
     image: "/dummy-image/image-dummy-potrait.png",
   },
-
-  /* ============================================
-   MEWAH THEME (6 Tema)
-   ============================================ */
   {
     id: 21,
     title: "Goldenopulence",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "hijau",
@@ -190,6 +206,7 @@ export const themes = [
   {
     id: 22,
     title: "Royalvelvet",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "ungu",
@@ -198,6 +215,7 @@ export const themes = [
   {
     id: 23,
     title: "Crystalgrand",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "biru",
@@ -206,6 +224,7 @@ export const themes = [
   {
     id: 24,
     title: "Majesticgold",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "coklat",
@@ -214,6 +233,7 @@ export const themes = [
   {
     id: 25,
     title: "Imperialbloom",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "pink",
@@ -222,18 +242,16 @@ export const themes = [
   {
     id: 26,
     title: "Regalcharm",
+    slug: null,
     price: "Rp 80.000",
     tema: "mewah",
     warna: "hijau",
     image: "/dummy-image/image-dummy-potrait.png",
   },
-
-  /* ============================================
-   RUSTIC THEME (6 Tema)
-   ============================================ */
   {
     id: 27,
     title: "Woodlandwhisper",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "coklat",
@@ -242,6 +260,7 @@ export const themes = [
   {
     id: 28,
     title: "Vintagebloom",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "pink",
@@ -250,6 +269,7 @@ export const themes = [
   {
     id: 29,
     title: "Earthencharm",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "hijau",
@@ -258,6 +278,7 @@ export const themes = [
   {
     id: 30,
     title: "Timberlove",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "biru",
@@ -266,6 +287,7 @@ export const themes = [
   {
     id: 31,
     title: "Meadowheart",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "ungu",
@@ -274,6 +296,7 @@ export const themes = [
   {
     id: 32,
     title: "Hearthglow",
+    slug: null,
     price: "Rp 80.000",
     tema: "rustic",
     warna: "coklat",

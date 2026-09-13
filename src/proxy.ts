@@ -10,7 +10,7 @@ import { getToken } from "next-auth/jwt";
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // ✅ EXCLUDE API AUTH ROUTE
+  // EXCLUDE API AUTH ROUTE
   if (pathname.startsWith("/api/auth")) {
     return NextResponse.next();
   }
@@ -33,10 +33,21 @@ export async function proxy(request: NextRequest) {
     "/icon1.png",
     "/manifest.json",
   ];
-  
+
   const isPublicRoute = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith("/_next") || pathname.startsWith("/logo")
+    (route) =>
+      pathname === route ||
+      pathname.startsWith("/_next") ||
+      pathname.startsWith("/logo") ||
+      pathname.startsWith("/dummy-image") ||
+      pathname.startsWith("/web-app-manifest"),
   );
+
+  // DETECT HALAMAN WEDDING (/[slug])
+  const reservedRoutes = ["login", "review", "dashboard", "super-admin", "api"];
+  const segments = pathname.split("/").filter(Boolean);
+  const isWeddingPage =
+    segments.length === 1 && !reservedRoutes.includes(segments[0]);
 
   // Kalo udah login dan ke /login → redirect
   if (token && pathname === "/login") {
@@ -47,7 +58,7 @@ export async function proxy(request: NextRequest) {
   }
 
   // Kalo belum login dan mau ke protected route
-  if (!token && !isPublicRoute) {
+  if (!token && !isPublicRoute && !isWeddingPage) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);

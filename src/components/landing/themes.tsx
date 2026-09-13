@@ -38,6 +38,17 @@ export default function Themes() {
     return themes.filter((t) => t.tema === temaValue).length;
   };
 
+  // ============================================
+  // HANDLER: BUKA TAB BARU KE HALAMAN UNDANGAN
+  // ============================================
+  const handleView = (theme: (typeof themes)[0]) => {
+    if (!theme.slug) {
+      alert(`Tema "${theme.title}" belum tersedia. Coming soon! 🚀`);
+      return;
+    }
+    window.open(`/${theme.slug}`, "_blank");
+  };
+
   return (
     <section className="section-padding bg-white" id="themes">
       <div className="container-custom">
@@ -60,7 +71,7 @@ export default function Themes() {
           </p>
         </motion.div>
 
-        {/* Filter Container - Desktop (STICKY) */}
+        {/* Filter Desktop */}
         <div className="hidden md:block sticky top-22 z-30 -mx-4 px-4">
           <div className="flex flex-wrap items-center justify-center gap-3 p-4 bg-gray-50/90 rounded-2xl border border-gray-100">
             {temaFilters.map((filter) => {
@@ -106,10 +117,9 @@ export default function Themes() {
           </div>
         </div>
 
-        {/* Spacer biar konten ga ketutupan filter */}
         <div className="hidden md:block h-4" />
 
-        {/* Filter - Mobile (Sticky) */}
+        {/* Filter Mobile */}
         <div className="md:hidden sticky top-16 z-30 pt-2 pb-3 -mx-4 px-4">
           <FilterMobile
             temaOptions={temaFilters}
@@ -147,7 +157,7 @@ export default function Themes() {
                   image={theme.image}
                   tema={theme.tema}
                   warna={theme.warna}
-                  onView={() => console.log(`View ${theme.title}`)}
+                  onView={() => handleView(theme)} // ← UBAH INI
                   onOrder={() => console.log(`Order ${theme.title}`)}
                   onShare={() => console.log(`Share ${theme.title}`)}
                 />
