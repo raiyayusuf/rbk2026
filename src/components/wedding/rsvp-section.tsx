@@ -7,8 +7,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Send, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, ChevronDown, Check } from "lucide-react";
 
 interface RSVPEntry {
   id: number;
@@ -36,6 +36,11 @@ const dummyMessages: RSVPEntry[] = [
   },
 ];
 
+const attendanceOptions = [
+  { value: "hadir", label: "Ya, Saya Akan Hadir" },
+  { value: "tidak hadir", label: "Maaf, Tidak Bisa Hadir" },
+];
+
 export default function RSVPSection() {
   const [form, setForm] = useState({
     name: "",
@@ -43,6 +48,16 @@ export default function RSVPSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const selectedLabel = attendanceOptions.find(
+    (opt) => opt.value === form.attendance,
+  )?.label;
+
+  const handleSelect = (value: string) => {
+    setForm({ ...form, attendance: value });
+    setIsDropdownOpen(false);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,7 +155,7 @@ export default function RSVPSection() {
             />
           </div>
 
-          {/* Konfirmasi Kehadiran */}
+          {/* Konfirmasi Kehadiran - CUSTOM DROPDOWN */}
           <div>
             <label
               className="block text-[10px] tracking-[0.2em] text-[#D4AF7A] font-bold mb-2"
@@ -149,23 +164,72 @@ export default function RSVPSection() {
               KONFIRMASI KEHADIRAN
             </label>
             <div className="relative">
-              <select
-                value={form.attendance}
-                onChange={(e) =>
-                  setForm({ ...form, attendance: e.target.value })
-                }
-                required
-                className="w-full px-4 py-3.5 rounded-xl border-2 border-[#F5D5D9] bg-[#FDF8F8] focus:border-[#D4838F] focus:outline-none text-sm text-[#5C3A3F] appearance-none cursor-pointer"
+              {/* Trigger */}
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`w-full px-4 py-3.5 rounded-xl border-2 bg-[#FDF8F8] focus:outline-none text-sm text-left transition-all flex items-center justify-between ${
+                  isDropdownOpen
+                    ? "border-[#D4838F]"
+                    : "border-[#F5D5D9] hover:border-[#D4838F]/50"
+                }`}
                 style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
               >
-                <option value="">Apakah Anda akan hadir?</option>
-                <option value="hadir">Ya, Saya Akan Hadir</option>
-                <option value="tidak hadir">Maaf, Tidak Bisa Hadir</option>
-              </select>
-              <ChevronDown
-                size={18}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#5C3A3F]/50 pointer-events-none"
-              />
+                <span
+                  className={
+                    selectedLabel ? "text-[#5C3A3F]" : "text-[#5C3A3F]/40"
+                  }
+                >
+                  {selectedLabel || "Apakah Anda akan hadir?"}
+                </span>
+                <motion.div
+                  animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown size={18} className="text-[#D4838F]" />
+                </motion.div>
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-[#F5D5D9] overflow-hidden z-20"
+                  >
+                    {attendanceOptions.map((option, index) => {
+                      const isSelected = form.attendance === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => handleSelect(option.value)}
+                          className={`w-full px-4 py-3.5 text-sm text-left transition-colors flex items-center justify-between gap-2 ${
+                            index !== attendanceOptions.length - 1
+                              ? "border-b border-[#F5D5D9]/50"
+                              : ""
+                          } ${
+                            isSelected
+                              ? "bg-[#FDF0F2] text-[#D4838F] font-semibold"
+                              : "text-[#5C3A3F] hover:bg-[#FDF8F8]"
+                          }`}
+                          style={{
+                            fontFamily: "Plus Jakarta Sans, sans-serif",
+                          }}
+                        >
+                          <span>{option.label}</span>
+                          {isSelected && (
+                            <Check size={16} className="text-[#D4838F]" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
