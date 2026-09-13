@@ -8,28 +8,28 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { WeddingData } from "@/types/wedding";
+import { WeddingThemeConfig } from "@/constants/wedding-themes";
 
 interface GallerySectionProps {
   data: WeddingData;
+  theme: WeddingThemeConfig;
 }
 
-export default function GallerySection({ data }: GallerySectionProps) {
+export default function GallerySection({ data, theme }: GallerySectionProps) {
+  const { colors, assets } = theme;
+
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
       <Image
-        src="/themes/angelicgrace/Angelicgrace-2.png"
+        src={assets.bg2}
         alt="Gallery Background"
         fill
         className="object-cover object-center"
       />
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-white/20" />
 
-      {/* Konten */}
       <div className="relative z-10 w-full max-w-107.5 px-6 py-12 flex flex-col items-center">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,35 +38,48 @@ export default function GallerySection({ data }: GallerySectionProps) {
           className="text-center mb-6"
         >
           <p
-            className="text-[10px] tracking-[0.4em] text-[#D4AF7A] font-medium mb-2"
-            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+            className="text-[10px] tracking-[0.4em] font-medium mb-2"
+            style={{
+              fontFamily: "Plus Jakarta Sans, sans-serif",
+              color: colors.gold,
+            }}
           >
             KISAH KAMI
           </p>
           <h2
-            className="text-4xl md:text-5xl text-[#D4838F] leading-tight"
-            style={{ fontFamily: "Great Vibes, cursive" }}
+            className="text-4xl md:text-5xl leading-tight"
+            style={{ fontFamily: "Great Vibes, cursive", color: colors.pink }}
           >
             Lembar Kenangan
           </h2>
 
-          {/* Ornamen */}
           <div className="flex items-center justify-center gap-2 mt-3 mb-4">
-            <div className="w-12 h-px bg-[#D4AF7A]/50" />
-            <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF7A]" />
-            <div className="w-12 h-px bg-[#D4AF7A]/50" />
+            <div
+              className="w-12 h-px"
+              style={{ backgroundColor: `${colors.gold}80` }}
+            />
+            <div
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: colors.gold }}
+            />
+            <div
+              className="w-12 h-px"
+              style={{ backgroundColor: `${colors.gold}80` }}
+            />
           </div>
 
           <p
-            className="text-[11px] text-[#5C3A3F]/70 italic max-w-xs mx-auto leading-relaxed"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            className="text-[11px] italic max-w-xs mx-auto leading-relaxed opacity-70"
+            style={{
+              fontFamily: "Playfair Display, serif",
+              color: colors.brown,
+            }}
           >
             Setiap foto menyimpan ribuan cerita yang tak terungkap kata. Inilah
             sedikit jejak kisah cinta kami.
           </p>
         </motion.div>
 
-        {/* Gallery Layout */}
         <div className="w-full space-y-4">
           {/* Frame 1 - Landscape */}
           <motion.div
@@ -89,7 +102,7 @@ export default function GallerySection({ data }: GallerySectionProps) {
             </div>
           </motion.div>
 
-          {/* Frame 2 & 3 - Kotak (2 Kolom) */}
+          {/* Frame 2 & 3 - Kotak */}
           <div className="grid grid-cols-2 gap-4">
             {data.galleryImages.slice(1, 3).map((img, index) => (
               <motion.div

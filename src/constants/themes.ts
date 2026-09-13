@@ -26,7 +26,7 @@ export const themes: Theme[] = [
   {
     id: 2,
     title: "Auroraromance",
-    slug: null,
+    slug: "arka-kirana",
     price: "Rp 80.000",
     tema: "islamic",
     warna: "biru",

@@ -8,17 +8,21 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { WeddingData } from "@/types/wedding";
+import { WeddingThemeConfig } from "@/constants/wedding-themes";
 import { InstagramIcon } from "@/components/ui/icons";
 
 interface GroomSectionProps {
   data: WeddingData;
+  theme: WeddingThemeConfig;
 }
 
-export default function GroomSection({ data }: GroomSectionProps) {
+export default function GroomSection({ data, theme }: GroomSectionProps) {
+  const { colors, assets } = theme;
+
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       <Image
-        src="/themes/angelicgrace/Angelicgrace-3.png"
+        src={assets.bg3}
         alt="Groom Background"
         fill
         className="object-cover object-center"
@@ -30,8 +34,11 @@ export default function GroomSection({ data }: GroomSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-[10px] tracking-[0.4em] text-[#D4AF7A] font-medium mb-6"
-          style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+          className="text-[10px] tracking-[0.4em] font-medium mb-6"
+          style={{
+            fontFamily: "Plus Jakarta Sans, sans-serif",
+            color: colors.gold,
+          }}
         >
           MEMPELAI PRIA
         </motion.p>
@@ -43,7 +50,10 @@ export default function GroomSection({ data }: GroomSectionProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative mb-6"
         >
-          <div className="w-56 h-80 md:w-64 md:h-90 rounded-t-full rounded-b-2xl overflow-hidden border-4 border-[#D4AF7A] shadow-2xl">
+          <div
+            className="w-56 h-80 md:w-64 md:h-90 rounded-t-full rounded-b-2xl overflow-hidden border-4 shadow-2xl"
+            style={{ borderColor: colors.gold }}
+          >
             <Image
               src={data.coverImage}
               alt={data.groomName}
@@ -59,8 +69,8 @@ export default function GroomSection({ data }: GroomSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl md:text-5xl text-[#D4838F] mb-3 text-center"
-          style={{ fontFamily: "Great Vibes, cursive" }}
+          className="text-4xl md:text-5xl mb-3 text-center"
+          style={{ fontFamily: "Great Vibes, cursive", color: colors.pink }}
         >
           {data.groomFullName}
         </motion.h3>
@@ -72,9 +82,18 @@ export default function GroomSection({ data }: GroomSectionProps) {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex items-center gap-2 mb-3"
         >
-          <div className="w-8 h-px bg-[#D4AF7A]" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF7A]" />
-          <div className="w-8 h-px bg-[#D4AF7A]" />
+          <div
+            className="w-8 h-px"
+            style={{ backgroundColor: `${colors.gold}80` }}
+          />
+          <div
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ backgroundColor: colors.gold }}
+          />
+          <div
+            className="w-8 h-px"
+            style={{ backgroundColor: `${colors.gold}80` }}
+          />
         </motion.div>
 
         <motion.p
@@ -82,8 +101,11 @@ export default function GroomSection({ data }: GroomSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-xs text-[#5C3A3F]/80 mb-1 text-center"
-          style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+          className="text-xs mb-1 text-center opacity-80"
+          style={{
+            fontFamily: "Plus Jakarta Sans, sans-serif",
+            color: colors.brown,
+          }}
         >
           Putra dari
         </motion.p>
@@ -93,8 +115,8 @@ export default function GroomSection({ data }: GroomSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-sm font-semibold text-[#5C3A3F] mb-6 text-center max-w-xs"
-          style={{ fontFamily: "Playfair Display, serif" }}
+          className="text-sm font-semibold mb-6 text-center max-w-xs"
+          style={{ fontFamily: "Playfair Display, serif", color: colors.brown }}
         >
           {data.groomParents}
         </motion.p>
@@ -104,14 +126,17 @@ export default function GroomSection({ data }: GroomSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          href="https://instagram.com"
+          href={`https://instagram.com/${data.groomInstagram}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-linear-to-r from-[#D4838F] to-[#E89BA5] hover:from-[#C27380] hover:to-[#D4838F] text-white text-[10px] tracking-[0.2em] font-medium transition-all shadow-md hover:shadow-lg"
-          style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-[10px] tracking-[0.2em] font-medium transition-all shadow-md hover:shadow-lg"
+          style={{
+            fontFamily: "Plus Jakarta Sans, sans-serif",
+            background: `linear-gradient(to right, ${colors.pink}, ${colors.border})`,
+          }}
         >
           <InstagramIcon size={12} />
-          INSTAGRAM : @ELVANO
+          INSTAGRAM : @{data.groomInstagram.toUpperCase()}
         </motion.a>
       </div>
     </section>

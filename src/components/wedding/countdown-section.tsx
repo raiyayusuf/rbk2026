@@ -10,12 +10,19 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarCheck } from "lucide-react";
 import { WeddingData } from "@/types/wedding";
+import { WeddingThemeConfig } from "@/constants/wedding-themes";
 
 interface CountdownSectionProps {
   data: WeddingData;
+  theme: WeddingThemeConfig;
 }
 
-export default function CountdownSection({ data }: CountdownSectionProps) {
+export default function CountdownSection({
+  data,
+  theme,
+}: CountdownSectionProps) {
+  const { colors, assets } = theme;
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -79,88 +86,102 @@ export default function CountdownSection({ data }: CountdownSectionProps) {
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
       <Image
-        src="/themes/angelicgrace/Angelicgrace-3.png"
+        src={assets.bg3}
         alt="Countdown Background"
         fill
         className="object-cover object-center"
       />
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-white/20" />
 
-      {/* Konten */}
       <div className="relative z-10 w-full max-w-107.5 px-6 py-12 flex flex-col items-center">
-        {/* Card Utama */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-8 text-center border-t-4 border-[#F5A876]"
+          className="w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-8 text-center border-t-4"
+          style={{ borderTopColor: colors.border }}
         >
-          {/* Label */}
           <p
-            className="text-[10px] tracking-[0.4em] text-[#D4AF7A] font-medium mb-3"
-            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+            className="text-[10px] tracking-[0.4em] font-medium mb-3"
+            style={{
+              fontFamily: "Plus Jakarta Sans, sans-serif",
+              color: colors.gold,
+            }}
           >
             MENUJU HARI BAHAGIA
           </p>
 
-          {/* Tanggal */}
           <h2
-            className="text-3xl md:text-4xl text-[#D4838F] leading-tight mb-1"
-            style={{ fontFamily: "Great Vibes, cursive" }}
+            className="text-3xl md:text-4xl leading-tight mb-1"
+            style={{ fontFamily: "Great Vibes, cursive", color: colors.pink }}
           >
             {dayName}, {dayNumber}
           </h2>
           <h2
-            className="text-3xl md:text-4xl text-[#D4838F] leading-tight mb-4"
-            style={{ fontFamily: "Great Vibes, cursive" }}
+            className="text-3xl md:text-4xl leading-tight mb-4"
+            style={{ fontFamily: "Great Vibes, cursive", color: colors.pink }}
           >
             {monthYear}
           </h2>
 
-          {/* Ornamen */}
           <div className="flex items-center justify-center gap-2 mb-5">
-            <div className="w-12 h-px bg-[#D4AF7A]/50" />
-            <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF7A]" />
-            <div className="w-12 h-px bg-[#D4AF7A]/50" />
+            <div
+              className="w-12 h-px"
+              style={{ backgroundColor: `${colors.gold}80` }}
+            />
+            <div
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: colors.gold }}
+            />
+            <div
+              className="w-12 h-px"
+              style={{ backgroundColor: `${colors.gold}80` }}
+            />
           </div>
 
-          {/* Quote */}
           <p
-            className="text-[14px] text-[#5C3A3F]/70 italic leading-relaxed mb-6 max-w-xs mx-auto"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            className="text-[14px] italic leading-relaxed mb-6 max-w-xs mx-auto opacity-70"
+            style={{
+              fontFamily: "Playfair Display, serif",
+              color: colors.brown,
+            }}
           >
             "Setiap detik yang berlalu membawa kami semakin dekat dengan janji
             suci. Doa dan restu dari Bapak/Ibu/Saudara/i adalah kebahagiaan
             terbesar bagi kami."
           </p>
 
-          {/* Countdown Grid */}
           <div className="grid grid-cols-4 gap-2 md:gap-3 mb-6">
             {timeBlocks.map((block) => (
               <div
                 key={block.label}
-                className="bg-[#FDF8F8] border-2 border-[#F5D5D9] rounded-2xl py-3 md:py-4 text-center relative"
+                className="rounded-2xl py-3 md:py-4 text-center relative border-2"
+                style={{ backgroundColor: colors.bg1, borderColor: colors.bg2 }}
               >
-                {/* Pin dekorasi atas */}
-                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#F5B5B5]" />
+                <div
+                  className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
+                  style={{ backgroundColor: colors.border }}
+                />
 
-                {/* Value */}
                 <p
-                  className="text-2xl md:text-3xl font-bold text-[#5C3A3F] leading-none"
-                  style={{ fontFamily: "Playfair Display, serif" }}
+                  className="text-2xl md:text-3xl font-bold leading-none"
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    color: colors.brown,
+                  }}
                 >
                   {String(block.value).padStart(2, "0")}
                 </p>
 
-                {/* Label */}
                 <p
-                  className="text-[8px] md:text-[9px] tracking-[0.15em] text-[#5C3A3F]/60 font-bold mt-1.5"
-                  style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+                  className="text-[8px] md:text-[9px] tracking-[0.15em] font-bold mt-1.5 opacity-60"
+                  style={{
+                    fontFamily: "Plus Jakarta Sans, sans-serif",
+                    color: colors.brown,
+                  }}
                 >
                   {block.label}
                 </p>
@@ -168,11 +189,13 @@ export default function CountdownSection({ data }: CountdownSectionProps) {
             ))}
           </div>
 
-          {/* Button Simpan Tanggal */}
           <button
             onClick={handleSaveDate}
-            className="w-full py-3.5 rounded-full bg-linear-to-r from-[#F5B5B5] to-[#F5A876] hover:from-[#E89BA5] hover:to-[#E89B76] text-white text-[10px] tracking-[0.25em] font-bold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+            className="w-full py-3.5 rounded-full text-white text-[10px] tracking-[0.25em] font-bold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            style={{
+              fontFamily: "Plus Jakarta Sans, sans-serif",
+              background: `linear-gradient(to right, ${colors.pink}, ${colors.border})`,
+            }}
           >
             <CalendarCheck size={14} />
             SIMPAN TANGGAL

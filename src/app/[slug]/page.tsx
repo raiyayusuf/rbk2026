@@ -6,6 +6,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import WeddingFrame from "@/components/wedding/wedding-frame";
 import CoverPage from "@/components/wedding/cover-page";
@@ -19,11 +20,21 @@ import GallerySection from "@/components/wedding/gallery-section";
 import GiftsSection from "@/components/wedding/gifts-section";
 import RSVPSection from "@/components/wedding/rsvp-section";
 import ThanksSection from "@/components/wedding/thanks-section";
-import { dummyWedding } from "@/types/wedding";
+import { dummyWedding, dummyWeddingAurora } from "@/types/wedding";
+import { getThemeConfig } from "@/constants/wedding-themes";
+
+const weddingDataMap: Record<string, typeof dummyWedding> = {
+  "elvano-azelia": dummyWedding,
+  "arka-kirana": dummyWeddingAurora,
+};
 
 export default function WeddingPage() {
+  const params = useParams();
+  const slug = params.slug as string;
   const [isOpen, setIsOpen] = useState(false);
-  const data = dummyWedding;
+
+  const data = weddingDataMap[slug] || dummyWedding;
+  const theme = getThemeConfig(slug);
 
   return (
     <>
@@ -36,7 +47,11 @@ export default function WeddingPage() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-50"
           >
-            <CoverPage data={data} onOpen={() => setIsOpen(true)} />
+            <CoverPage
+              data={data}
+              theme={theme}
+              onOpen={() => setIsOpen(true)}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -49,16 +64,16 @@ export default function WeddingPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <WeddingFrame>
-            <HeroSection data={data} />
-            <QuoteSection data={data} />
-            <BrideSection data={data} />
-            <GroomSection data={data} />
-            <CountdownSection data={data} />
-            <ScheduleSection data={data} />
-            <GallerySection data={data} />
-            <GiftsSection data={data} />
-            <RSVPSection />
-            <ThanksSection data={data} />
+            <HeroSection data={data} theme={theme} />
+            <QuoteSection data={data} theme={theme} />
+            <BrideSection data={data} theme={theme} />
+            <GroomSection data={data} theme={theme} />
+            <CountdownSection data={data} theme={theme} />
+            <ScheduleSection data={data} theme={theme} />
+            <GallerySection data={data} theme={theme} />
+            <GiftsSection data={data} theme={theme} />
+            <RSVPSection theme={theme} />
+            <ThanksSection data={data} theme={theme} />
           </WeddingFrame>
         </motion.div>
       )}
