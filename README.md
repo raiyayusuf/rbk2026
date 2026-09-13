@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rabiku.com — Undangan Pernikahan Digital Premium
 
-## Getting Started
+> Buat undangan pernikahan digital impianmu dengan 32 tema elegan. Elegan, cepat, dan modern.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Tentang Rabiku
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Rabiku adalah platform pembuatan **undangan pernikahan digital** dengan berbagai tema premium. Kami membantu pasangan menyebarkan kabar bahagia dengan cara yang lebih elegan, cepat, dan modern.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Yang kamu dapat:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 32 tema elegan (5 kategori × 5 warna)
+- Galeri foto & slideshow
+- Musik pengiring romantis
+- RSVP / Buku tamu digital
+- Amplop digital
+- Navigasi lokasi
+- Aktif selamanya, bayar sekali
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Tema
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tersedia **32 tema unik** dalam 5 kategori:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Kategori  | Jumlah Tema |
+| --------- | ----------- |
+| Islamic   | 7           |
+| Modern    | 7           |
+| Minimalis | 6           |
+| Mewah     | 6           |
+| Rustic    | 6           |
 
-## Deploy on Vercel
+**Pilihan warna:** Coklat, Biru, Pink, Hijau, Ungu
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💰 Harga
+
+Cukup **Rp 80.000** untuk 1 tema dengan akses selamanya.
+Tidak ada biaya perpanjangan atau biaya tersembunyi.
+
+---
+
+## 🚀 Cara Pesan
+
+1. Hubungi kami via **WhatsApp**
+2. Pilih tema yang diinginkan
+3. Lakukan pembayaran via **QRIS**
+4. Kami buatkan akun & website dalam 1-2 jam
+5. Login dan mulai edit konten
+
+---
+
+## 🔧 Tech Stack
+
+- Next.js 16 + TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- NextAuth.js
+- Prisma + Neon (PostgreSQL)
+- Cloudinary
+- Vercel
+
+---
+
+## 📞 Kontak
+
+- **WhatsApp:** [082227180340](https://wa.me/082227180340)
+- **Email:** raiyayusuf.p@gmail.com
+- **Instagram:** [@raiyaysf\_](https://instagram.com/raiyaysf_)
+
+---
+
+## 📄 License
+
+© 2026 Rabiku.com | All rights reserved.
+
+Made with ❤️ by Raiya Yusuf Priatmojo
