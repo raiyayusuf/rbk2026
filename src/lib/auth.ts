@@ -5,26 +5,8 @@
 
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-// ============================================
-// HARDCODED USER UNTUK TESTING
-// ============================================
-const users = [
-  {
-    id: "1",
-    name: "Super Admin",
-    email: "admin@rabiku.com",
-    password: "admin123",
-    role: "SUPER_ADMIN",
-  },
-  {
-    id: "2",
-    name: "Yusuf",
-    email: "yusuf@rabiku.com",
-    password: "1234",
-    role: "ADMIN",
-  },
-];
+import bcrypt from "bcryptjs";
+import { prisma } from "./prisma";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -45,16 +27,22 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email dan password wajib diisi");
         }
 
-        const email = credentials.email as string;
-        const password = credentials.password as string;
-
-        const user = users.find((u) => u.email === email);
+        // Cari user di database
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
 
         if (!user) {
           throw new Error("Email tidak terdaftar");
         }
 
-        if (user.password !== password) {
+        // Cek password
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password,
+        );
+
+        if (!isValid) {
           throw new Error("Password salah");
         }
 

@@ -1,7 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+/* ============================================
+   prisma/schema.prisma
+   DATABASE SCHEMA - RABIKU.COM (MySQL)
+   ============================================ */
 
 generator client {
   provider = "prisma-client"
@@ -9,5 +9,78 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+}
+
+/* ============================================
+   ENUMS
+   ============================================ */
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+/* ============================================
+   USER
+   ============================================ */
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  password      String
+  name          String
+  role          Role          @default(ADMIN)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  weddingSite   WeddingSite?
+
+  @@map("users")
+}
+
+/* ============================================
+   WEDDING SITE
+   ============================================ */
+model WeddingSite {
+  id              String        @id @default(cuid())
+  userId          String        @unique
+  slug            String        @unique
+
+  groomName       String
+  brideName       String
+  groomFullName   String
+  brideFullName   String
+  groomParents    String
+  brideParents    String
+  groomInstagram  String?
+  brideInstagram  String?
+
+  weddingDate     DateTime
+  weddingTime     String
+  venueName       String
+  venueAddress    String
+
+  coverImage      String?       @db.Text
+  quote           String?       @db.Text
+  loveStory       String?       @db.Text
+  galleryImages   Json?
+
+  eventSchedule   Json?
+  bankAccounts    Json?
+  donationLink    String?
+
+  themeSlug       String
+  songUrl         String?       @db.Text
+
+  isActive        Boolean       @default(true)
+  expiredDate     DateTime?
+  views           Int           @default(0)
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user            User          @relation(fields: [userId], references: [id])
+
+  @@map("wedding_sites")
 }

@@ -1,13 +1,58 @@
+# ============================================
+# RABIKU.COM - INSTALL DEPENDENCIES
+# ============================================
+
+# ============================================
+# CORE
+# ============================================
 npm install prisma @prisma/client
 npm install next-auth @auth/prisma-adapter
 npm install bcryptjs
 npm install -D @types/bcryptjs
+
+# ============================================
+# CLOUDINARY
+# ============================================
 npm install cloudinary next-cloudinary
+
+# ============================================
+# FORM & VALIDATION
+# ============================================
 npm install react-hook-form zod @hookform/resolvers
+
+# ============================================
+# NOTIFICATION
+# ============================================
 npm install react-hot-toast sonner
+
+# ============================================
+# ANIMATION
+# ============================================
 npm install framer-motion
+
+# ============================================
+# UI UTILITIES
+# ============================================
 npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
+
+# ============================================
+# ICONS
+# ============================================
 npm install lucide-react
+
+# ============================================
+# FLOWBITE
+# ============================================
 npm install flowbite-react
 npm install flowbite
-npm install cloudinary
+
+# ============================================
+# PRISMA 7 (MySQL Adapter)
+# ============================================
+npm install @prisma/adapter-mariadb mariadb
+
+# ============================================
+# DEV TOOLS
+# ============================================
+npm install -D tsx
+npm install -D dotenv
